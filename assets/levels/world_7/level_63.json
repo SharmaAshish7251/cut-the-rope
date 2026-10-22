@@ -1,0 +1,84 @@
+{
+    "levelId": 63,
+    "worldId": 7,
+    "name": "Level 63",
+    "worldName": "Magic Kingdom",
+    "difficulty": 6,
+    "hintEligible": true,
+    "boosterEligible": true,
+    "hintText": "Time your rope cut carefully to avoid the moving hazard spikes!",
+    "candy": {
+        "x": 0.79,
+        "y": 0.32
+    },
+    "monster": {
+        "x": 0.42,
+        "y": 0.72
+    },
+    "ropes": [
+        {
+            "id": "rope_0",
+            "anchorX": 0.79,
+            "anchorY": 0.16,
+            "length": 0.16,
+            "cuttable": true
+        },
+        {
+            "id": "rope_1",
+            "anchorX": 0.62,
+            "anchorY": 0.14,
+            "length": 0.248,
+            "cuttable": true
+        },
+        {
+            "id": "rope_2",
+            "anchorX": 0.48,
+            "anchorY": 0.18,
+            "length": 0.34,
+            "cuttable": true
+        }
+    ],
+    "stars": [
+        {
+            "id": "star_0",
+            "x": 0.698,
+            "y": 0.375
+        },
+        {
+            "id": "star_1",
+            "x": 0.605,
+            "y": 0.387
+        },
+        {
+            "id": "star_2",
+            "x": 0.512,
+            "y": 0.363
+        }
+    ],
+    "obstacles": [
+        {
+            "x": 0.6,
+            "y": 0.6,
+            "width": 0.14,
+            "height": 0.14,
+            "type": "moving_saw"
+        }
+    ],
+    "bounds": {
+        "left": 0,
+        "right": 1,
+        "top": 0,
+        "bottom": 1
+    },
+    "scoring": {
+        "oneStar": 1630,
+        "twoStars": 4260,
+        "threeStars": 6890
+    },
+    "objectives": [
+        "deliver_candy"
+    ],
+    "physicsOverrides": {
+        "gravity": -9.81
+    }
+}

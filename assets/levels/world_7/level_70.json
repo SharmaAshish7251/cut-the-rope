@@ -1,0 +1,83 @@
+{
+    "levelId": 70,
+    "worldId": 7,
+    "name": "Level 70",
+    "worldName": "Magic Kingdom",
+    "difficulty": 7,
+    "hintEligible": true,
+    "boosterEligible": true,
+    "hintText": "Cut ropes in sequence to swing the candy through stars to Om Nom!",
+    "candy": {
+        "x": 0.26,
+        "y": 0.35
+    },
+    "monster": {
+        "x": 0.65,
+        "y": 0.78
+    },
+    "ropes": [
+        {
+            "id": "rope_0",
+            "anchorX": 0.26,
+            "anchorY": 0.19,
+            "length": 0.16,
+            "cuttable": true
+        },
+        {
+            "id": "rope_1",
+            "anchorX": 0.44,
+            "anchorY": 0.17,
+            "length": 0.255,
+            "cuttable": true
+        },
+        {
+            "id": "rope_2",
+            "anchorX": 0.59,
+            "anchorY": 0.21,
+            "length": 0.358,
+            "cuttable": true
+        },
+        {
+            "id": "rope_3",
+            "anchorX": 0.65,
+            "anchorY": 0.24,
+            "length": 0.405,
+            "cuttable": true
+        }
+    ],
+    "stars": [
+        {
+            "id": "star_0",
+            "x": 0.358,
+            "y": 0.411
+        },
+        {
+            "id": "star_1",
+            "x": 0.455,
+            "y": 0.424
+        },
+        {
+            "id": "star_2",
+            "x": 0.552,
+            "y": 0.398
+        }
+    ],
+    "obstacles": [],
+    "bounds": {
+        "left": 0,
+        "right": 1,
+        "top": 0,
+        "bottom": 1
+    },
+    "scoring": {
+        "oneStar": 1700,
+        "twoStars": 4400,
+        "threeStars": 7100
+    },
+    "objectives": [
+        "deliver_candy"
+    ],
+    "physicsOverrides": {
+        "gravity": -9.81
+    }
+}

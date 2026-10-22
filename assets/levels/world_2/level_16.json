@@ -1,0 +1,84 @@
+{
+    "levelId": 16,
+    "worldId": 2,
+    "name": "Level 16",
+    "worldName": "Toy Workshop",
+    "difficulty": 1,
+    "hintEligible": true,
+    "boosterEligible": true,
+    "hintText": "Wait for the laser barrier gap to open before releasing!",
+    "candy": {
+        "x": 0.7,
+        "y": 0.35
+    },
+    "monster": {
+        "x": 0.35,
+        "y": 0.65
+    },
+    "ropes": [
+        {
+            "id": "rope_0",
+            "anchorX": 0.7,
+            "anchorY": 0.19,
+            "length": 0.16,
+            "cuttable": true
+        },
+        {
+            "id": "rope_1",
+            "anchorX": 0.54,
+            "anchorY": 0.17,
+            "length": 0.241,
+            "cuttable": true
+        },
+        {
+            "id": "rope_2",
+            "anchorX": 0.4,
+            "anchorY": 0.21,
+            "length": 0.331,
+            "cuttable": true
+        }
+    ],
+    "stars": [
+        {
+            "id": "star_0",
+            "x": 0.612,
+            "y": 0.4
+        },
+        {
+            "id": "star_1",
+            "x": 0.525,
+            "y": 0.41
+        },
+        {
+            "id": "star_2",
+            "x": 0.438,
+            "y": 0.388
+        }
+    ],
+    "obstacles": [
+        {
+            "x": 0.52,
+            "y": 0.58,
+            "width": 0.12,
+            "height": 0.05,
+            "type": "moving_bubble"
+        }
+    ],
+    "bounds": {
+        "left": 0,
+        "right": 1,
+        "top": 0,
+        "bottom": 1
+    },
+    "scoring": {
+        "oneStar": 1160,
+        "twoStars": 3320,
+        "threeStars": 5480
+    },
+    "objectives": [
+        "deliver_candy"
+    ],
+    "physicsOverrides": {
+        "gravity": -9.81
+    }
+}

@@ -1,0 +1,84 @@
+{
+    "levelId": 49,
+    "worldId": 5,
+    "name": "Level 49",
+    "worldName": "Jelly Jungle",
+    "difficulty": 4,
+    "hintEligible": true,
+    "boosterEligible": true,
+    "hintText": "Master the multi-stage rope transfer to complete the finale!",
+    "candy": {
+        "x": 0.23,
+        "y": 0.35
+    },
+    "monster": {
+        "x": 0.75,
+        "y": 0.85
+    },
+    "ropes": [
+        {
+            "id": "rope_0",
+            "anchorX": 0.23,
+            "anchorY": 0.19,
+            "length": 0.16,
+            "cuttable": true
+        },
+        {
+            "id": "rope_1",
+            "anchorX": 0.46,
+            "anchorY": 0.17,
+            "length": 0.292,
+            "cuttable": true
+        },
+        {
+            "id": "rope_2",
+            "anchorX": 0.67,
+            "anchorY": 0.21,
+            "length": 0.462,
+            "cuttable": true
+        }
+    ],
+    "stars": [
+        {
+            "id": "star_0",
+            "x": 0.36,
+            "y": 0.444
+        },
+        {
+            "id": "star_1",
+            "x": 0.49,
+            "y": 0.461
+        },
+        {
+            "id": "star_2",
+            "x": 0.62,
+            "y": 0.414
+        }
+    ],
+    "obstacles": [
+        {
+            "x": 0.49,
+            "y": 0.68,
+            "width": 0.14,
+            "height": 0.14,
+            "type": "saw"
+        }
+    ],
+    "bounds": {
+        "left": 0,
+        "right": 1,
+        "top": 0,
+        "bottom": 1
+    },
+    "scoring": {
+        "oneStar": 1490,
+        "twoStars": 3980,
+        "threeStars": 6470
+    },
+    "objectives": [
+        "deliver_candy"
+    ],
+    "physicsOverrides": {
+        "gravity": -9.81
+    }
+}

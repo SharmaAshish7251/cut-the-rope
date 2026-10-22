@@ -1,0 +1,84 @@
+{
+    "levelId": 55,
+    "worldId": 6,
+    "name": "Level 55",
+    "worldName": "Frosty Peaks",
+    "difficulty": 5,
+    "hintEligible": true,
+    "boosterEligible": true,
+    "hintText": "Pass through the portal to warp across the level!",
+    "candy": {
+        "x": 0.79,
+        "y": 0.35
+    },
+    "monster": {
+        "x": 0.42,
+        "y": 0.72
+    },
+    "ropes": [
+        {
+            "id": "rope_0",
+            "anchorX": 0.79,
+            "anchorY": 0.19,
+            "length": 0.16,
+            "cuttable": true
+        },
+        {
+            "id": "rope_1",
+            "anchorX": 0.62,
+            "anchorY": 0.17,
+            "length": 0.248,
+            "cuttable": true
+        },
+        {
+            "id": "rope_2",
+            "anchorX": 0.48,
+            "anchorY": 0.21,
+            "length": 0.34,
+            "cuttable": true
+        }
+    ],
+    "stars": [
+        {
+            "id": "star_0",
+            "x": 0.698,
+            "y": 0.405
+        },
+        {
+            "id": "star_1",
+            "x": 0.605,
+            "y": 0.417
+        },
+        {
+            "id": "star_2",
+            "x": 0.512,
+            "y": 0.393
+        }
+    ],
+    "obstacles": [
+        {
+            "x": 0.6,
+            "y": 0.61,
+            "width": 0.12,
+            "height": 0.05,
+            "type": "moving_laser"
+        }
+    ],
+    "bounds": {
+        "left": 0,
+        "right": 1,
+        "top": 0,
+        "bottom": 1
+    },
+    "scoring": {
+        "oneStar": 1550,
+        "twoStars": 4100,
+        "threeStars": 6650
+    },
+    "objectives": [
+        "deliver_candy"
+    ],
+    "physicsOverrides": {
+        "gravity": -9.81
+    }
+}

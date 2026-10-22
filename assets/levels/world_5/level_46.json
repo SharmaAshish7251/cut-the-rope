@@ -1,0 +1,84 @@
+{
+    "levelId": 46,
+    "worldId": 5,
+    "name": "Level 46",
+    "worldName": "Jelly Jungle",
+    "difficulty": 4,
+    "hintEligible": true,
+    "boosterEligible": true,
+    "hintText": "Wait for the laser barrier gap to open before releasing!",
+    "candy": {
+        "x": 0.26,
+        "y": 0.35
+    },
+    "monster": {
+        "x": 0.65,
+        "y": 0.78
+    },
+    "ropes": [
+        {
+            "id": "rope_0",
+            "anchorX": 0.26,
+            "anchorY": 0.19,
+            "length": 0.16,
+            "cuttable": true
+        },
+        {
+            "id": "rope_1",
+            "anchorX": 0.44,
+            "anchorY": 0.17,
+            "length": 0.255,
+            "cuttable": true
+        },
+        {
+            "id": "rope_2",
+            "anchorX": 0.59,
+            "anchorY": 0.21,
+            "length": 0.358,
+            "cuttable": true
+        }
+    ],
+    "stars": [
+        {
+            "id": "star_0",
+            "x": 0.358,
+            "y": 0.411
+        },
+        {
+            "id": "star_1",
+            "x": 0.455,
+            "y": 0.424
+        },
+        {
+            "id": "star_2",
+            "x": 0.552,
+            "y": 0.398
+        }
+    ],
+    "obstacles": [
+        {
+            "x": 0.46,
+            "y": 0.64,
+            "width": 0.12,
+            "height": 0.05,
+            "type": "moving_bubble"
+        }
+    ],
+    "bounds": {
+        "left": 0,
+        "right": 1,
+        "top": 0,
+        "bottom": 1
+    },
+    "scoring": {
+        "oneStar": 1460,
+        "twoStars": 3920,
+        "threeStars": 6380
+    },
+    "objectives": [
+        "deliver_candy"
+    ],
+    "physicsOverrides": {
+        "gravity": -9.81
+    }
+}

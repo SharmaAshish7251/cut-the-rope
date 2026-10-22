@@ -1,0 +1,84 @@
+{
+    "levelId": 29,
+    "worldId": 3,
+    "name": "Level 29",
+    "worldName": "Sky Islands",
+    "difficulty": 2,
+    "hintEligible": true,
+    "boosterEligible": true,
+    "hintText": "Master the multi-stage rope transfer to complete the finale!",
+    "candy": {
+        "x": 0.23,
+        "y": 0.38
+    },
+    "monster": {
+        "x": 0.85,
+        "y": 0.84
+    },
+    "ropes": [
+        {
+            "id": "rope_0",
+            "anchorX": 0.23,
+            "anchorY": 0.22,
+            "length": 0.16,
+            "cuttable": true
+        },
+        {
+            "id": "rope_1",
+            "anchorX": 0.51,
+            "anchorY": 0.2,
+            "length": 0.333,
+            "cuttable": true
+        },
+        {
+            "id": "rope_2",
+            "anchorX": 0.76,
+            "anchorY": 0.24,
+            "length": 0.548,
+            "cuttable": true
+        }
+    ],
+    "stars": [
+        {
+            "id": "star_0",
+            "x": 0.385,
+            "y": 0.509
+        },
+        {
+            "id": "star_1",
+            "x": 0.54,
+            "y": 0.532
+        },
+        {
+            "id": "star_2",
+            "x": 0.695,
+            "y": 0.477
+        }
+    ],
+    "obstacles": [
+        {
+            "x": 0.54,
+            "y": 0.69,
+            "width": 0.14,
+            "height": 0.14,
+            "type": "saw"
+        }
+    ],
+    "bounds": {
+        "left": 0,
+        "right": 1,
+        "top": 0,
+        "bottom": 1
+    },
+    "scoring": {
+        "oneStar": 1290,
+        "twoStars": 3580,
+        "threeStars": 5870
+    },
+    "objectives": [
+        "deliver_candy"
+    ],
+    "physicsOverrides": {
+        "gravity": -9.81
+    }
+}

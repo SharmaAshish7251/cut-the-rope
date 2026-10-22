@@ -1,0 +1,76 @@
+{
+    "levelId": 10,
+    "worldId": 1,
+    "name": "Level 10",
+    "worldName": "Candy Garden",
+    "difficulty": 1,
+    "hintEligible": true,
+    "boosterEligible": true,
+    "hintText": "Cut ropes in sequence to swing the candy through stars to Om Nom!",
+    "candy": {
+        "x": 0.26,
+        "y": 0.35
+    },
+    "monster": {
+        "x": 0.7,
+        "y": 0.82
+    },
+    "ropes": [
+        {
+            "id": "rope_0",
+            "anchorX": 0.26,
+            "anchorY": 0.19,
+            "length": 0.16,
+            "cuttable": true
+        },
+        {
+            "id": "rope_1",
+            "anchorX": 0.46,
+            "anchorY": 0.17,
+            "length": 0.269,
+            "cuttable": true
+        },
+        {
+            "id": "rope_2",
+            "anchorX": 0.63,
+            "anchorY": 0.21,
+            "length": 0.396,
+            "cuttable": true
+        }
+    ],
+    "stars": [
+        {
+            "id": "star_0",
+            "x": 0.37,
+            "y": 0.424
+        },
+        {
+            "id": "star_1",
+            "x": 0.48,
+            "y": 0.438
+        },
+        {
+            "id": "star_2",
+            "x": 0.59,
+            "y": 0.406
+        }
+    ],
+    "obstacles": [],
+    "bounds": {
+        "left": 0,
+        "right": 1,
+        "top": 0,
+        "bottom": 1
+    },
+    "scoring": {
+        "oneStar": 1100,
+        "twoStars": 3200,
+        "threeStars": 5300
+    },
+    "objectives": [
+        "deliver_candy"
+    ],
+    "physicsOverrides": {
+        "gravity": -9.81
+    }
+}

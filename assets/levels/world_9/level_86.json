@@ -1,0 +1,91 @@
+{
+    "levelId": 86,
+    "worldId": 9,
+    "name": "Level 86",
+    "worldName": "Cosmic Realm",
+    "difficulty": 8,
+    "hintEligible": true,
+    "boosterEligible": true,
+    "hintText": "Wait for the laser barrier gap to open before releasing!",
+    "candy": {
+        "x": 0.26,
+        "y": 0.38
+    },
+    "monster": {
+        "x": 0.65,
+        "y": 0.78
+    },
+    "ropes": [
+        {
+            "id": "rope_0",
+            "anchorX": 0.26,
+            "anchorY": 0.22,
+            "length": 0.16,
+            "cuttable": true
+        },
+        {
+            "id": "rope_1",
+            "anchorX": 0.44,
+            "anchorY": 0.2,
+            "length": 0.255,
+            "cuttable": true
+        },
+        {
+            "id": "rope_2",
+            "anchorX": 0.59,
+            "anchorY": 0.24,
+            "length": 0.358,
+            "cuttable": true
+        },
+        {
+            "id": "rope_3",
+            "anchorX": 0.65,
+            "anchorY": 0.27,
+            "length": 0.405,
+            "cuttable": true
+        }
+    ],
+    "stars": [
+        {
+            "id": "star_0",
+            "x": 0.358,
+            "y": 0.441
+        },
+        {
+            "id": "star_1",
+            "x": 0.455,
+            "y": 0.454
+        },
+        {
+            "id": "star_2",
+            "x": 0.552,
+            "y": 0.428
+        }
+    ],
+    "obstacles": [
+        {
+            "x": 0.46,
+            "y": 0.66,
+            "width": 0.12,
+            "height": 0.05,
+            "type": "moving_bubble"
+        }
+    ],
+    "bounds": {
+        "left": 0,
+        "right": 1,
+        "top": 0,
+        "bottom": 1
+    },
+    "scoring": {
+        "oneStar": 1860,
+        "twoStars": 4720,
+        "threeStars": 7580
+    },
+    "objectives": [
+        "deliver_candy"
+    ],
+    "physicsOverrides": {
+        "gravity": -9.81
+    }
+}

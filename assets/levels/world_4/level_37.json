@@ -1,0 +1,84 @@
+{
+    "levelId": 37,
+    "worldId": 4,
+    "name": "Level 37",
+    "worldName": "Cookie Caves",
+    "difficulty": 3,
+    "hintEligible": true,
+    "boosterEligible": true,
+    "hintText": "Use the gravity field to bend your swing trajectory!",
+    "candy": {
+        "x": 0.23,
+        "y": 0.35
+    },
+    "monster": {
+        "x": 0.85,
+        "y": 0.84
+    },
+    "ropes": [
+        {
+            "id": "rope_0",
+            "anchorX": 0.23,
+            "anchorY": 0.19,
+            "length": 0.16,
+            "cuttable": true
+        },
+        {
+            "id": "rope_1",
+            "anchorX": 0.51,
+            "anchorY": 0.17,
+            "length": 0.333,
+            "cuttable": true
+        },
+        {
+            "id": "rope_2",
+            "anchorX": 0.76,
+            "anchorY": 0.21,
+            "length": 0.548,
+            "cuttable": true
+        }
+    ],
+    "stars": [
+        {
+            "id": "star_0",
+            "x": 0.385,
+            "y": 0.479
+        },
+        {
+            "id": "star_1",
+            "x": 0.54,
+            "y": 0.502
+        },
+        {
+            "id": "star_2",
+            "x": 0.695,
+            "y": 0.447
+        }
+    ],
+    "obstacles": [
+        {
+            "x": 0.54,
+            "y": 0.67,
+            "width": 0.12,
+            "height": 0.05,
+            "type": "bumper"
+        }
+    ],
+    "bounds": {
+        "left": 0,
+        "right": 1,
+        "top": 0,
+        "bottom": 1
+    },
+    "scoring": {
+        "oneStar": 1370,
+        "twoStars": 3740,
+        "threeStars": 6110
+    },
+    "objectives": [
+        "deliver_candy"
+    ],
+    "physicsOverrides": {
+        "gravity": -9.81
+    }
+}

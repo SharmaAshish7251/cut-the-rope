@@ -1,0 +1,76 @@
+{
+    "levelId": 50,
+    "worldId": 5,
+    "name": "Level 50",
+    "worldName": "Jelly Jungle",
+    "difficulty": 5,
+    "hintEligible": true,
+    "boosterEligible": true,
+    "hintText": "Cut ropes in sequence to swing the candy through stars to Om Nom!",
+    "candy": {
+        "x": 0.26,
+        "y": 0.38
+    },
+    "monster": {
+        "x": 0.7,
+        "y": 0.82
+    },
+    "ropes": [
+        {
+            "id": "rope_0",
+            "anchorX": 0.26,
+            "anchorY": 0.22,
+            "length": 0.16,
+            "cuttable": true
+        },
+        {
+            "id": "rope_1",
+            "anchorX": 0.46,
+            "anchorY": 0.2,
+            "length": 0.269,
+            "cuttable": true
+        },
+        {
+            "id": "rope_2",
+            "anchorX": 0.63,
+            "anchorY": 0.24,
+            "length": 0.396,
+            "cuttable": true
+        }
+    ],
+    "stars": [
+        {
+            "id": "star_0",
+            "x": 0.37,
+            "y": 0.454
+        },
+        {
+            "id": "star_1",
+            "x": 0.48,
+            "y": 0.468
+        },
+        {
+            "id": "star_2",
+            "x": 0.59,
+            "y": 0.436
+        }
+    ],
+    "obstacles": [],
+    "bounds": {
+        "left": 0,
+        "right": 1,
+        "top": 0,
+        "bottom": 1
+    },
+    "scoring": {
+        "oneStar": 1500,
+        "twoStars": 4000,
+        "threeStars": 6500
+    },
+    "objectives": [
+        "deliver_candy"
+    ],
+    "physicsOverrides": {
+        "gravity": -9.81
+    }
+}

@@ -1,0 +1,84 @@
+{
+    "levelId": 99,
+    "worldId": 10,
+    "name": "Level 99",
+    "worldName": "Candy Citadel",
+    "difficulty": 9,
+    "hintEligible": true,
+    "boosterEligible": true,
+    "hintText": "Master the multi-stage rope transfer to complete the finale!",
+    "candy": {
+        "x": 0.79,
+        "y": 0.32
+    },
+    "monster": {
+        "x": 0.5,
+        "y": 0.68
+    },
+    "ropes": [
+        {
+            "id": "rope_0",
+            "anchorX": 0.79,
+            "anchorY": 0.16,
+            "length": 0.16,
+            "cuttable": true
+        },
+        {
+            "id": "rope_1",
+            "anchorX": 0.66,
+            "anchorY": 0.14,
+            "length": 0.222,
+            "cuttable": true
+        },
+        {
+            "id": "rope_2",
+            "anchorX": 0.54,
+            "anchorY": 0.18,
+            "length": 0.287,
+            "cuttable": true
+        }
+    ],
+    "stars": [
+        {
+            "id": "star_0",
+            "x": 0.718,
+            "y": 0.354
+        },
+        {
+            "id": "star_1",
+            "x": 0.645,
+            "y": 0.362
+        },
+        {
+            "id": "star_2",
+            "x": 0.573,
+            "y": 0.344
+        }
+    ],
+    "obstacles": [
+        {
+            "x": 0.65,
+            "y": 0.58,
+            "width": 0.14,
+            "height": 0.14,
+            "type": "saw"
+        }
+    ],
+    "bounds": {
+        "left": 0,
+        "right": 1,
+        "top": 0,
+        "bottom": 1
+    },
+    "scoring": {
+        "oneStar": 1990,
+        "twoStars": 4980,
+        "threeStars": 7970
+    },
+    "objectives": [
+        "deliver_candy"
+    ],
+    "physicsOverrides": {
+        "gravity": -9.81
+    }
+}

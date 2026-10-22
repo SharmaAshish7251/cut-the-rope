@@ -1,0 +1,84 @@
+{
+    "levelId": 77,
+    "worldId": 8,
+    "name": "Level 77",
+    "worldName": "Cyber City",
+    "difficulty": 7,
+    "hintEligible": true,
+    "boosterEligible": true,
+    "hintText": "Use the gravity field to bend your swing trajectory!",
+    "candy": {
+        "x": 0.23,
+        "y": 0.38
+    },
+    "monster": {
+        "x": 0.85,
+        "y": 0.84
+    },
+    "ropes": [
+        {
+            "id": "rope_0",
+            "anchorX": 0.23,
+            "anchorY": 0.22,
+            "length": 0.16,
+            "cuttable": true
+        },
+        {
+            "id": "rope_1",
+            "anchorX": 0.51,
+            "anchorY": 0.2,
+            "length": 0.333,
+            "cuttable": true
+        },
+        {
+            "id": "rope_2",
+            "anchorX": 0.76,
+            "anchorY": 0.24,
+            "length": 0.548,
+            "cuttable": true
+        }
+    ],
+    "stars": [
+        {
+            "id": "star_0",
+            "x": 0.385,
+            "y": 0.509
+        },
+        {
+            "id": "star_1",
+            "x": 0.54,
+            "y": 0.532
+        },
+        {
+            "id": "star_2",
+            "x": 0.695,
+            "y": 0.477
+        }
+    ],
+    "obstacles": [
+        {
+            "x": 0.54,
+            "y": 0.69,
+            "width": 0.12,
+            "height": 0.05,
+            "type": "bumper"
+        }
+    ],
+    "bounds": {
+        "left": 0,
+        "right": 1,
+        "top": 0,
+        "bottom": 1
+    },
+    "scoring": {
+        "oneStar": 1770,
+        "twoStars": 4540,
+        "threeStars": 7310
+    },
+    "objectives": [
+        "deliver_candy"
+    ],
+    "physicsOverrides": {
+        "gravity": -9.81
+    }
+}

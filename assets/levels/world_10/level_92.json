@@ -1,0 +1,91 @@
+{
+    "levelId": 92,
+    "worldId": 10,
+    "name": "Level 92",
+    "worldName": "Candy Citadel",
+    "difficulty": 9,
+    "hintEligible": true,
+    "boosterEligible": true,
+    "hintText": "Float the candy inside the bubble to reach higher stars!",
+    "candy": {
+        "x": 0.2,
+        "y": 0.38
+    },
+    "monster": {
+        "x": 0.82,
+        "y": 0.86
+    },
+    "ropes": [
+        {
+            "id": "rope_0",
+            "anchorX": 0.2,
+            "anchorY": 0.22,
+            "length": 0.16,
+            "cuttable": true
+        },
+        {
+            "id": "rope_1",
+            "anchorX": 0.48,
+            "anchorY": 0.2,
+            "length": 0.333,
+            "cuttable": true
+        },
+        {
+            "id": "rope_2",
+            "anchorX": 0.73,
+            "anchorY": 0.24,
+            "length": 0.548,
+            "cuttable": true
+        },
+        {
+            "id": "rope_3",
+            "anchorX": 0.82,
+            "anchorY": 0.27,
+            "length": 0.63,
+            "cuttable": true
+        }
+    ],
+    "stars": [
+        {
+            "id": "star_0",
+            "x": 0.355,
+            "y": 0.509
+        },
+        {
+            "id": "star_1",
+            "x": 0.51,
+            "y": 0.532
+        },
+        {
+            "id": "star_2",
+            "x": 0.665,
+            "y": 0.477
+        }
+    ],
+    "obstacles": [
+        {
+            "x": 0.51,
+            "y": 0.7,
+            "width": 0.12,
+            "height": 0.05,
+            "type": "moving_spike"
+        }
+    ],
+    "bounds": {
+        "left": 0,
+        "right": 1,
+        "top": 0,
+        "bottom": 1
+    },
+    "scoring": {
+        "oneStar": 1920,
+        "twoStars": 4840,
+        "threeStars": 7760
+    },
+    "objectives": [
+        "deliver_candy"
+    ],
+    "physicsOverrides": {
+        "gravity": -9.81
+    }
+}

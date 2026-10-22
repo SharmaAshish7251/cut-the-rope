@@ -1,0 +1,76 @@
+{
+    "levelId": 60,
+    "worldId": 6,
+    "name": "Level 60",
+    "worldName": "Frosty Peaks",
+    "difficulty": 6,
+    "hintEligible": true,
+    "boosterEligible": true,
+    "hintText": "Cut ropes in sequence to swing the candy through stars to Om Nom!",
+    "candy": {
+        "x": 0.2,
+        "y": 0.32
+    },
+    "monster": {
+        "x": 0.82,
+        "y": 0.86
+    },
+    "ropes": [
+        {
+            "id": "rope_0",
+            "anchorX": 0.2,
+            "anchorY": 0.16,
+            "length": 0.16,
+            "cuttable": true
+        },
+        {
+            "id": "rope_1",
+            "anchorX": 0.48,
+            "anchorY": 0.14,
+            "length": 0.333,
+            "cuttable": true
+        },
+        {
+            "id": "rope_2",
+            "anchorX": 0.73,
+            "anchorY": 0.18,
+            "length": 0.548,
+            "cuttable": true
+        }
+    ],
+    "stars": [
+        {
+            "id": "star_0",
+            "x": 0.355,
+            "y": 0.449
+        },
+        {
+            "id": "star_1",
+            "x": 0.51,
+            "y": 0.472
+        },
+        {
+            "id": "star_2",
+            "x": 0.665,
+            "y": 0.417
+        }
+    ],
+    "obstacles": [],
+    "bounds": {
+        "left": 0,
+        "right": 1,
+        "top": 0,
+        "bottom": 1
+    },
+    "scoring": {
+        "oneStar": 1600,
+        "twoStars": 4200,
+        "threeStars": 6800
+    },
+    "objectives": [
+        "deliver_candy"
+    ],
+    "physicsOverrides": {
+        "gravity": -9.81
+    }
+}

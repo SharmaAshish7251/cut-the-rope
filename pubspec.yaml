@@ -1,0 +1,90 @@
+name: cut_the_cable
+description: "Cut the Cable - A 100-level claymorphism physics puzzle game."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Physics / Game Engine
+  flame: 1.17.0
+  flame_forge2d: 0.17.1
+
+  # State Management
+  flutter_riverpod: ^2.5.1
+
+  # Persistence
+  shared_preferences: ^2.3.2
+  path_provider: ^2.1.4
+
+  # Navigation
+  go_router: ^14.3.0
+
+  # Audio
+  flame_audio: ^2.9.1
+
+  # Ads
+  google_mobile_ads: ^9.0.0
+
+  # Network
+  connectivity_plus: ^6.0.5
+
+  # Utilities
+  cupertino_icons: ^1.0.8
+  flutter_animate: ^4.5.0
+  collection: ^1.18.0
+  logger: ^2.4.0
+  package_info_plus: ^10.0.0
+  google_fonts: ^8.2.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/config/
+    - assets/levels/world_1/
+    - assets/levels/world_2/
+    - assets/levels/world_3/
+    - assets/levels/world_4/
+    - assets/levels/world_5/
+    - assets/levels/world_6/
+    - assets/levels/world_7/
+    - assets/levels/world_8/
+    - assets/levels/world_9/
+    - assets/levels/world_10/
+    - assets/images/
+    - assets/images/characters/
+    - assets/images/ui/
+    - assets/images/candy/
+    - assets/images/obstacles/
+    - assets/images/backgrounds/
+    - assets/audio/sfx/
+    - assets/audio/music/
+
+  fonts:
+    - family: Fredoka
+      fonts:
+        - asset: assets/fonts/Fredoka-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Fredoka-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Fredoka-Bold.ttf
+          weight: 700
+    - family: Nunito
+      fonts:
+        - asset: assets/fonts/Nunito-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Nunito-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Nunito-Bold.ttf
+          weight: 700

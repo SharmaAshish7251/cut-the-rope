@@ -1,0 +1,68 @@
+{
+  "game": {
+    "title": "Cut the Cable",
+    "version": "1.0.0",
+    "totalLevels": 100,
+    "totalWorlds": 10,
+    "levelsPerWorld": 10,
+    "firstLevel": 1,
+    "orientation": "portrait"
+  },
+  "theme": {
+    "style": "claymorphism",
+    "background": "#FFF4E8",
+    "primary": "#FF8A65",
+    "secondary": "#8B7CF6",
+    "accent": "#FFD166",
+    "success": "#65C98B",
+    "danger": "#F16B73",
+    "text": "#493A50",
+    "surface": "#FFFFFF",
+    "cornerRadius": 24,
+    "softShadows": true,
+    "puffyHighlights": true
+  },
+  "gameplay": {
+    "gravity": -9.81,
+    "maxStarsPerLevel": 3,
+    "ropeCutSensitivityPx": 20,
+    "allowOfflineGameplay": true,
+    "allowOfflineProgressSaving": true,
+    "requireInternetForHints": true,
+    "requireInternetToEarnBoosters": true,
+    "requireCompletedRewardedAd": true
+  },
+  "ads": {
+    "provider": "google_mobile_ads",
+    "testMode": true,
+    "androidAppId": "ca-app-pub-3940256099942544~3347511713",
+    "androidRewardedAdUnitId": "ca-app-pub-3940256099942544/5224354917",
+    "iosAppId": "ca-app-pub-3940256099942544~1458002511",
+    "iosRewardedAdUnitId": "ca-app-pub-3940256099942544/1712485313",
+    "rewardedHints": true,
+    "rewardedBoosters": true,
+    "bannerAds": false,
+    "interstitialAds": false,
+    "hintsPerCompletedAd": 1,
+    "boostersPerCompletedAd": 1
+  },
+  "progression": {
+    "unlockNextLevelOnCompletion": true,
+    "allowReplay": true,
+    "maxLevel": 100,
+    "resumePolicy": "last_incomplete",
+    "worldStarRequirements": [0, 18, 45, 75, 110, 145, 185, 225, 260, 285]
+  },
+  "audio": {
+    "musicEnabledByDefault": true,
+    "soundEnabledByDefault": true,
+    "vibrationEnabledByDefault": true
+  },
+  "featureFlags": {
+    "shopEnabled": true,
+    "achievementsEnabled": true,
+    "dailyRewardsEnabled": true,
+    "hintSystemEnabled": true,
+    "boosterSystemEnabled": true
+  }
+}

@@ -1,0 +1,84 @@
+{
+    "levelId": 34,
+    "worldId": 4,
+    "name": "Level 34",
+    "worldName": "Cookie Caves",
+    "difficulty": 3,
+    "hintEligible": true,
+    "boosterEligible": true,
+    "hintText": "Watch out for the spinning saw blade cutting your ropes!",
+    "candy": {
+        "x": 0.26,
+        "y": 0.35
+    },
+    "monster": {
+        "x": 0.7,
+        "y": 0.82
+    },
+    "ropes": [
+        {
+            "id": "rope_0",
+            "anchorX": 0.26,
+            "anchorY": 0.19,
+            "length": 0.16,
+            "cuttable": true
+        },
+        {
+            "id": "rope_1",
+            "anchorX": 0.46,
+            "anchorY": 0.17,
+            "length": 0.269,
+            "cuttable": true
+        },
+        {
+            "id": "rope_2",
+            "anchorX": 0.63,
+            "anchorY": 0.21,
+            "length": 0.396,
+            "cuttable": true
+        }
+    ],
+    "stars": [
+        {
+            "id": "star_0",
+            "x": 0.37,
+            "y": 0.424
+        },
+        {
+            "id": "star_1",
+            "x": 0.48,
+            "y": 0.438
+        },
+        {
+            "id": "star_2",
+            "x": 0.59,
+            "y": 0.406
+        }
+    ],
+    "obstacles": [
+        {
+            "x": 0.48,
+            "y": 0.66,
+            "width": 0.12,
+            "height": 0.05,
+            "type": "moving_portal"
+        }
+    ],
+    "bounds": {
+        "left": 0,
+        "right": 1,
+        "top": 0,
+        "bottom": 1
+    },
+    "scoring": {
+        "oneStar": 1340,
+        "twoStars": 3680,
+        "threeStars": 6020
+    },
+    "objectives": [
+        "deliver_candy"
+    ],
+    "physicsOverrides": {
+        "gravity": -9.81
+    }
+}

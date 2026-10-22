@@ -1,0 +1,84 @@
+{
+    "levelId": 41,
+    "worldId": 5,
+    "name": "Level 41",
+    "worldName": "Jelly Jungle",
+    "difficulty": 4,
+    "hintEligible": true,
+    "boosterEligible": true,
+    "hintText": "Bounce the candy off the rubber cushion across the gap!",
+    "candy": {
+        "x": 0.23,
+        "y": 0.38
+    },
+    "monster": {
+        "x": 0.75,
+        "y": 0.85
+    },
+    "ropes": [
+        {
+            "id": "rope_0",
+            "anchorX": 0.23,
+            "anchorY": 0.22,
+            "length": 0.16,
+            "cuttable": true
+        },
+        {
+            "id": "rope_1",
+            "anchorX": 0.46,
+            "anchorY": 0.2,
+            "length": 0.292,
+            "cuttable": true
+        },
+        {
+            "id": "rope_2",
+            "anchorX": 0.67,
+            "anchorY": 0.24,
+            "length": 0.462,
+            "cuttable": true
+        }
+    ],
+    "stars": [
+        {
+            "id": "star_0",
+            "x": 0.36,
+            "y": 0.474
+        },
+        {
+            "id": "star_1",
+            "x": 0.49,
+            "y": 0.491
+        },
+        {
+            "id": "star_2",
+            "x": 0.62,
+            "y": 0.444
+        }
+    ],
+    "obstacles": [
+        {
+            "x": 0.49,
+            "y": 0.69,
+            "width": 0.12,
+            "height": 0.05,
+            "type": "moving_bumper"
+        }
+    ],
+    "bounds": {
+        "left": 0,
+        "right": 1,
+        "top": 0,
+        "bottom": 1
+    },
+    "scoring": {
+        "oneStar": 1410,
+        "twoStars": 3820,
+        "threeStars": 6230
+    },
+    "objectives": [
+        "deliver_candy"
+    ],
+    "physicsOverrides": {
+        "gravity": -9.81
+    }
+}

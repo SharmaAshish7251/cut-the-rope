@@ -1,0 +1,84 @@
+{
+    "levelId": 45,
+    "worldId": 5,
+    "name": "Level 45",
+    "worldName": "Jelly Jungle",
+    "difficulty": 4,
+    "hintEligible": true,
+    "boosterEligible": true,
+    "hintText": "Pass through the portal to warp across the level!",
+    "candy": {
+        "x": 0.23,
+        "y": 0.32
+    },
+    "monster": {
+        "x": 0.85,
+        "y": 0.84
+    },
+    "ropes": [
+        {
+            "id": "rope_0",
+            "anchorX": 0.23,
+            "anchorY": 0.16,
+            "length": 0.16,
+            "cuttable": true
+        },
+        {
+            "id": "rope_1",
+            "anchorX": 0.51,
+            "anchorY": 0.14,
+            "length": 0.333,
+            "cuttable": true
+        },
+        {
+            "id": "rope_2",
+            "anchorX": 0.76,
+            "anchorY": 0.18,
+            "length": 0.548,
+            "cuttable": true
+        }
+    ],
+    "stars": [
+        {
+            "id": "star_0",
+            "x": 0.385,
+            "y": 0.449
+        },
+        {
+            "id": "star_1",
+            "x": 0.54,
+            "y": 0.472
+        },
+        {
+            "id": "star_2",
+            "x": 0.695,
+            "y": 0.417
+        }
+    ],
+    "obstacles": [
+        {
+            "x": 0.54,
+            "y": 0.66,
+            "width": 0.12,
+            "height": 0.05,
+            "type": "moving_laser"
+        }
+    ],
+    "bounds": {
+        "left": 0,
+        "right": 1,
+        "top": 0,
+        "bottom": 1
+    },
+    "scoring": {
+        "oneStar": 1450,
+        "twoStars": 3900,
+        "threeStars": 6350
+    },
+    "objectives": [
+        "deliver_candy"
+    ],
+    "physicsOverrides": {
+        "gravity": -9.81
+    }
+}

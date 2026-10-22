@@ -1,0 +1,84 @@
+{
+    "levelId": 69,
+    "worldId": 7,
+    "name": "Level 69",
+    "worldName": "Magic Kingdom",
+    "difficulty": 6,
+    "hintEligible": true,
+    "boosterEligible": true,
+    "hintText": "Master the multi-stage rope transfer to complete the finale!",
+    "candy": {
+        "x": 0.23,
+        "y": 0.32
+    },
+    "monster": {
+        "x": 0.85,
+        "y": 0.84
+    },
+    "ropes": [
+        {
+            "id": "rope_0",
+            "anchorX": 0.23,
+            "anchorY": 0.16,
+            "length": 0.16,
+            "cuttable": true
+        },
+        {
+            "id": "rope_1",
+            "anchorX": 0.51,
+            "anchorY": 0.14,
+            "length": 0.333,
+            "cuttable": true
+        },
+        {
+            "id": "rope_2",
+            "anchorX": 0.76,
+            "anchorY": 0.18,
+            "length": 0.548,
+            "cuttable": true
+        }
+    ],
+    "stars": [
+        {
+            "id": "star_0",
+            "x": 0.385,
+            "y": 0.449
+        },
+        {
+            "id": "star_1",
+            "x": 0.54,
+            "y": 0.472
+        },
+        {
+            "id": "star_2",
+            "x": 0.695,
+            "y": 0.417
+        }
+    ],
+    "obstacles": [
+        {
+            "x": 0.54,
+            "y": 0.66,
+            "width": 0.14,
+            "height": 0.14,
+            "type": "saw"
+        }
+    ],
+    "bounds": {
+        "left": 0,
+        "right": 1,
+        "top": 0,
+        "bottom": 1
+    },
+    "scoring": {
+        "oneStar": 1690,
+        "twoStars": 4380,
+        "threeStars": 7070
+    },
+    "objectives": [
+        "deliver_candy"
+    ],
+    "physicsOverrides": {
+        "gravity": -9.81
+    }
+}

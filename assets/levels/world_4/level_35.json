@@ -1,0 +1,84 @@
+{
+    "levelId": 35,
+    "worldId": 4,
+    "name": "Level 35",
+    "worldName": "Cookie Caves",
+    "difficulty": 3,
+    "hintEligible": true,
+    "boosterEligible": true,
+    "hintText": "Pass through the portal to warp across the level!",
+    "candy": {
+        "x": 0.79,
+        "y": 0.38
+    },
+    "monster": {
+        "x": 0.5,
+        "y": 0.68
+    },
+    "ropes": [
+        {
+            "id": "rope_0",
+            "anchorX": 0.79,
+            "anchorY": 0.22,
+            "length": 0.16,
+            "cuttable": true
+        },
+        {
+            "id": "rope_1",
+            "anchorX": 0.66,
+            "anchorY": 0.2,
+            "length": 0.222,
+            "cuttable": true
+        },
+        {
+            "id": "rope_2",
+            "anchorX": 0.54,
+            "anchorY": 0.24,
+            "length": 0.287,
+            "cuttable": true
+        }
+    ],
+    "stars": [
+        {
+            "id": "star_0",
+            "x": 0.718,
+            "y": 0.414
+        },
+        {
+            "id": "star_1",
+            "x": 0.645,
+            "y": 0.422
+        },
+        {
+            "id": "star_2",
+            "x": 0.573,
+            "y": 0.404
+        }
+    ],
+    "obstacles": [
+        {
+            "x": 0.65,
+            "y": 0.61,
+            "width": 0.12,
+            "height": 0.05,
+            "type": "moving_laser"
+        }
+    ],
+    "bounds": {
+        "left": 0,
+        "right": 1,
+        "top": 0,
+        "bottom": 1
+    },
+    "scoring": {
+        "oneStar": 1350,
+        "twoStars": 3700,
+        "threeStars": 6050
+    },
+    "objectives": [
+        "deliver_candy"
+    ],
+    "physicsOverrides": {
+        "gravity": -9.81
+    }
+}

@@ -1,0 +1,83 @@
+{
+    "levelId": 80,
+    "worldId": 8,
+    "name": "Level 80",
+    "worldName": "Cyber City",
+    "difficulty": 8,
+    "hintEligible": true,
+    "boosterEligible": true,
+    "hintText": "Cut ropes in sequence to swing the candy through stars to Om Nom!",
+    "candy": {
+        "x": 0.7,
+        "y": 0.38
+    },
+    "monster": {
+        "x": 0.35,
+        "y": 0.65
+    },
+    "ropes": [
+        {
+            "id": "rope_0",
+            "anchorX": 0.7,
+            "anchorY": 0.22,
+            "length": 0.16,
+            "cuttable": true
+        },
+        {
+            "id": "rope_1",
+            "anchorX": 0.54,
+            "anchorY": 0.2,
+            "length": 0.241,
+            "cuttable": true
+        },
+        {
+            "id": "rope_2",
+            "anchorX": 0.4,
+            "anchorY": 0.24,
+            "length": 0.331,
+            "cuttable": true
+        },
+        {
+            "id": "rope_3",
+            "anchorX": 0.35,
+            "anchorY": 0.27,
+            "length": 0.367,
+            "cuttable": true
+        }
+    ],
+    "stars": [
+        {
+            "id": "star_0",
+            "x": 0.612,
+            "y": 0.43
+        },
+        {
+            "id": "star_1",
+            "x": 0.525,
+            "y": 0.44
+        },
+        {
+            "id": "star_2",
+            "x": 0.438,
+            "y": 0.418
+        }
+    ],
+    "obstacles": [],
+    "bounds": {
+        "left": 0,
+        "right": 1,
+        "top": 0,
+        "bottom": 1
+    },
+    "scoring": {
+        "oneStar": 1800,
+        "twoStars": 4600,
+        "threeStars": 7400
+    },
+    "objectives": [
+        "deliver_candy"
+    ],
+    "physicsOverrides": {
+        "gravity": -9.81
+    }
+}
