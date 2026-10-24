@@ -3,7 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import '../../app/theme/app_theme.dart';
 import '../../data/models/inventory_item.dart';
 
-/// Bottom sheet overlay for selecting and activating a booster during gameplay.
+/// 3D Bottom sheet overlay for selecting and activating a booster during gameplay.
 class BoosterOverlay extends StatelessWidget {
   final Inventory inventory;
   final void Function(BoosterType type) onActivate;
@@ -20,21 +20,23 @@ class BoosterOverlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bottomInset = MediaQuery.of(context).padding.bottom;
+
     return Container(
       color: Colors.black54,
       child: Align(
         alignment: Alignment.bottomCenter,
         child: Container(
           width: double.infinity,
-          padding: const EdgeInsets.fromLTRB(20, 24, 20, 36),
+          padding: EdgeInsets.fromLTRB(20, 16, 20, bottomInset + 24),
           decoration: const BoxDecoration(
             color: AppTheme.surface,
-            borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
+            borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
             boxShadow: [
               BoxShadow(
-                color: Color(0x30000000),
-                offset: Offset(0, -4),
-                blurRadius: 16,
+                color: Color(0x40000000),
+                offset: Offset(0, -6),
+                blurRadius: 24,
               ),
             ],
           ),
@@ -43,17 +45,25 @@ class BoosterOverlay extends StatelessWidget {
             children: [
               // Handle bar
               Container(
-                width: 40,
-                height: 4,
+                width: 44,
+                height: 5,
                 decoration: BoxDecoration(
                   color: Colors.grey.shade300,
-                  borderRadius: BorderRadius.circular(2),
+                  borderRadius: BorderRadius.circular(3),
                 ),
               ),
               const SizedBox(height: 16),
-              Text('Boosters',
-                  style: AppTheme.headline.copyWith(color: AppTheme.secondary)),
-              const SizedBox(height: 16),
+
+              Text(
+                'Boosters',
+                style: AppTheme.headline.copyWith(
+                  color: AppTheme.primaryOrange,
+                  fontSize: 26,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+
+              const SizedBox(height: 18),
 
               ...BoosterType.values.asMap().entries.map((entry) {
                 final i = entry.key;
@@ -67,13 +77,31 @@ class BoosterOverlay extends StatelessWidget {
                 ).animate().fadeIn(delay: (i * 60).ms).slideX(begin: 0.15);
               }),
 
-              const SizedBox(height: 12),
-              SizedBox(
-                width: double.infinity,
-                child: TextButton(
-                  onPressed: onCancel,
-                  child: Text('Cancel',
-                      style: AppTheme.label.copyWith(color: Colors.grey)),
+              const SizedBox(height: 16),
+
+              GestureDetector(
+                onTap: onCancel,
+                child: Container(
+                  width: double.infinity,
+                  height: 48,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFF1F5F9),
+                    borderRadius: BorderRadius.circular(24),
+                    border: Border.all(color: Colors.white, width: 1.5),
+                    boxShadow: const [
+                      BoxShadow(color: Color(0xFFCBD5E1), offset: Offset(0, 4), blurRadius: 0),
+                    ],
+                  ),
+                  child: Center(
+                    child: Text(
+                      'Cancel',
+                      style: AppTheme.label.copyWith(
+                        color: AppTheme.textDark,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15,
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ],
@@ -100,18 +128,19 @@ class _BoosterCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 10),
+      margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(14),
-      decoration: AppTheme.clayBox(color: AppTheme.surface),
+      decoration: AppTheme.card3D(),
       child: Row(
         children: [
           // Icon
           Container(
             width: 48,
             height: 48,
-            decoration: AppTheme.clayBox(
-              color: AppTheme.secondary.withValues(alpha: 0.12),
-              radius: 14,
+            decoration: BoxDecoration(
+              color: const Color(0xFFEDE7F6),
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: AppTheme.secondary, width: 1.5),
             ),
             child: Center(
               child: Text(type.emoji, style: const TextStyle(fontSize: 26)),
@@ -126,21 +155,20 @@ class _BoosterCard extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Text(type.displayName, style: AppTheme.label),
-                    const SizedBox(width: 8),
+                    Text(type.displayName, style: AppTheme.label.copyWith(fontWeight: FontWeight.bold, fontSize: 15)),
+                    const SizedBox(width: 6),
                     if (count > 0)
                       Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 2),
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                         decoration: BoxDecoration(
-                          color: AppTheme.success.withValues(alpha: 0.15),
+                          color: AppTheme.secondary.withValues(alpha: 0.15),
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Text(
                           '×$count',
                           style: AppTheme.caption.copyWith(
-                            color: AppTheme.success,
-                            fontWeight: FontWeight.w700,
+                            color: AppTheme.secondary,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
@@ -150,7 +178,8 @@ class _BoosterCard extends StatelessWidget {
                 Text(
                   type.description,
                   style: AppTheme.caption.copyWith(
-                    color: AppTheme.textDark.withValues(alpha: 0.5),
+                    color: AppTheme.textDark.withValues(alpha: 0.65),
+                    fontSize: 12,
                   ),
                 ),
               ],
@@ -159,15 +188,18 @@ class _BoosterCard extends StatelessWidget {
 
           // Actions
           if (count > 0)
-            _SmallButton(
+            _3DSmallButton(
               label: 'Use',
-              color: AppTheme.primary,
+              bgColor: AppTheme.primaryOrange,
+              lipColor: AppTheme.orangeLip,
               onTap: onActivate!,
             )
           else
-            _SmallButton(
+            _3DSmallButton(
               label: '🎬 Earn',
-              color: AppTheme.accent,
+              bgColor: AppTheme.goldYellow,
+              lipColor: AppTheme.goldLip,
+              textColor: AppTheme.textDark,
               onTap: onEarn,
             ),
         ],
@@ -176,24 +208,44 @@ class _BoosterCard extends StatelessWidget {
   }
 }
 
-class _SmallButton extends StatelessWidget {
+class _3DSmallButton extends StatelessWidget {
   final String label;
-  final Color color;
+  final Color bgColor;
+  final Color lipColor;
+  final Color textColor;
   final VoidCallback onTap;
-  const _SmallButton({required this.label, required this.color, required this.onTap});
+
+  const _3DSmallButton({
+    required this.label,
+    required this.bgColor,
+    required this.lipColor,
+    this.textColor = Colors.white,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onTap,
-      style: ElevatedButton.styleFrom(
-        backgroundColor: color,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-        minimumSize: Size.zero,
-        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        decoration: BoxDecoration(
+          color: bgColor,
+          borderRadius: BorderRadius.circular(18),
+          border: Border.all(color: Colors.white, width: 1.5),
+          boxShadow: [
+            BoxShadow(color: lipColor, offset: const Offset(0, 3), blurRadius: 0),
+          ],
+        ),
+        child: Text(
+          label,
+          style: AppTheme.caption.copyWith(
+            color: textColor,
+            fontWeight: FontWeight.bold,
+            fontSize: 13,
+          ),
+        ),
       ),
-      child: Text(label,
-          style: AppTheme.caption.copyWith(color: Colors.white, fontWeight: FontWeight.w700)),
     );
   }
 }

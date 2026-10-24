@@ -1,11 +1,41 @@
+import 'package:flutter/widgets.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:logger/logger.dart';
 
 /// Centralized audio controller handling background music and sound effects.
-class AudioService {
+class AudioService with WidgetsBindingObserver {
   bool _musicEnabled = true;
   bool _soundEnabled = true;
+  bool _pausedByBackground = false;
   final _log = Logger();
+
+  AudioService() {
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.paused ||
+        state == AppLifecycleState.detached ||
+        state == AppLifecycleState.hidden ||
+        state == AppLifecycleState.inactive) {
+      // App went to background -> pause BGM sound!
+      if (_musicEnabled) {
+        _pausedByBackground = true;
+        pauseBgMusic();
+      }
+    } else if (state == AppLifecycleState.resumed) {
+      // App returned to foreground -> resume BGM sound!
+      if (_pausedByBackground && _musicEnabled) {
+        _pausedByBackground = false;
+        resumeBgMusic();
+      }
+    }
+  }
 
   static const String bgmMain = 'music/main_theme.wav';
   static const String sfxRopeCut = 'sfx/rope_cut.wav';

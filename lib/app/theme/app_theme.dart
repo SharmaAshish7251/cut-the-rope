@@ -1,30 +1,43 @@
 import 'package:flutter/material.dart';
 
-/// Central claymorphism design system for Cut the Cable.
+/// Central smooth claymorphism design system for Cut the Cable.
+/// Uses soft ambient drop shadows + inner white highlights for seamless background blending.
 class AppTheme {
   // ── Brand colours ────────────────────────────────────────────────────────
-  static const Color background = Color(0xFFFFF4E8);
-  static const Color primary    = Color(0xFFFF8A65);
-  static const Color secondary  = Color(0xFF8B7CF6);
-  static const Color accent     = Color(0xFFFFD166);
-  static const Color success    = Color(0xFF65C98B);
-  static const Color danger     = Color(0xFFF16B73);
-  static const Color textDark   = Color(0xFF493A50);
-  static const Color surface    = Color(0xFFFFFFFF);
+  static const Color background    = Color(0xFFFDF5EA);
+  static const Color primary       = Color(0xFFFF7A45);
+  static const Color primaryOrange = Color(0xFFFF7A45);
+  static const Color orangeLip     = Color(0xFFE65100);
+  static const Color secondary     = Color(0xFF8B7CF6);
+  static const Color accent        = Color(0xFFFFC837);
+  static const Color goldYellow    = Color(0xFFFFC837);
+  static const Color goldLip       = Color(0xFFF59E0B);
+  static const Color success       = Color(0xFF4CD964);
+  static const Color successGreen  = Color(0xFF4CD964);
+  static const Color greenLip      = Color(0xFF16A34A);
+  static const Color danger        = Color(0xFFF16B73);
+  static const Color textDark      = Color(0xFF2D2638);
+  static const Color surface       = Color(0xFFFFFFFF);
+  static const Color cardBg        = Color(0xFFFFFFFF);
+  static const Color cardBorder    = Color(0xFFF0E4D7);
+  static const Color cardLip       = Color(0xFFE2D0BE);
 
-  // ── Claymorphism tokens ────────────────────────────────────────────────
-  static const double cornerRadius = 24.0;
+  // ── Smooth Claymorphism & 3D tokens ────────────────────────────────────
+  static const double cornerRadius = 22.0;
   static const double buttonCorner = 32.0;
 
-  static List<BoxShadow> clayShadow(Color color) => [
+  /// Soft, smooth claymorphic dual shadows (blends seamlessly into background)
+  static List<BoxShadow> clayShadow(Color color, {double elevation = 6.0}) => [
+        // Soft ambient drop shadow
         BoxShadow(
-          color: color.withValues(alpha: 0.35),
-          offset: const Offset(0, 6),
-          blurRadius: 12,
-          spreadRadius: -2,
+          color: color.withValues(alpha: 0.28),
+          offset: Offset(0, elevation),
+          blurRadius: elevation * 2.2,
+          spreadRadius: -1,
         ),
+        // Soft top/inner glow
         BoxShadow(
-          color: Colors.white.withValues(alpha: 0.6),
+          color: Colors.white.withValues(alpha: 0.8),
           offset: const Offset(0, -2),
           blurRadius: 6,
         ),
@@ -39,10 +52,77 @@ class AppTheme {
         color: color,
         borderRadius: BorderRadius.circular(radius),
         boxShadow: clayShadow(color),
-        border: borderColor != null
-            ? Border.all(color: borderColor, width: 2)
-            : null,
+        border: Border.all(
+          color: borderColor ?? Colors.white.withValues(alpha: 0.8),
+          width: 1.5,
+        ),
       );
+
+  // Smooth 3D Cards & Buttons (no harsh solid cutouts, smooth ambient depth)
+  static BoxDecoration card3D() {
+    return BoxDecoration(
+      color: cardBg,
+      borderRadius: BorderRadius.circular(22),
+      border: Border.all(color: Colors.white, width: 2),
+      boxShadow: const [
+        // Soft bottom lip
+        BoxShadow(
+          color: Color(0x33DFCBB8),
+          offset: Offset(0, 6),
+          blurRadius: 10,
+          spreadRadius: 0,
+        ),
+        // Subtle ambient shadow
+        BoxShadow(
+          color: Color(0x1A000000),
+          offset: Offset(0, 3),
+          blurRadius: 8,
+        ),
+      ],
+    );
+  }
+
+  static BoxDecoration primaryButton3D() {
+    return BoxDecoration(
+      color: primaryOrange,
+      borderRadius: BorderRadius.circular(999),
+      border: Border.all(color: Colors.white.withValues(alpha: 0.6), width: 1.5),
+      boxShadow: [
+        BoxShadow(
+          color: orangeLip.withValues(alpha: 0.45),
+          offset: const Offset(0, 6),
+          blurRadius: 12,
+          spreadRadius: -1,
+        ),
+        BoxShadow(
+          color: Colors.white.withValues(alpha: 0.35),
+          offset: const Offset(0, -2),
+          blurRadius: 4,
+        ),
+      ],
+    );
+  }
+
+  static BoxDecoration successButton3D() {
+    return BoxDecoration(
+      color: successGreen,
+      borderRadius: BorderRadius.circular(999),
+      border: Border.all(color: Colors.white.withValues(alpha: 0.6), width: 1.5),
+      boxShadow: [
+        BoxShadow(
+          color: greenLip.withValues(alpha: 0.45),
+          offset: const Offset(0, 6),
+          blurRadius: 12,
+          spreadRadius: -1,
+        ),
+        BoxShadow(
+          color: Colors.white.withValues(alpha: 0.35),
+          offset: const Offset(0, -2),
+          blurRadius: 4,
+        ),
+      ],
+    );
+  }
 
   // ── Text styles ────────────────────────────────────────────────────────
   // Headings & Titles -> Local Fredoka TTF assets
@@ -100,3 +180,6 @@ class AppTheme {
         ),
       );
 }
+
+/// Alias class for backward compatibility
+typedef GameTheme = AppTheme;

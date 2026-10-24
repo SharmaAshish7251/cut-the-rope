@@ -232,6 +232,17 @@ class CandyGame extends Forge2DGame {
     if (!isPlaying) return;
     final worldStart = screenToWorld(Vector2(startX, startY));
     final worldEnd   = screenToWorld(Vector2(endX,   endY));
+
+    // Pop bubble if swipe passes near candy inside bubble
+    if (candy.isMounted && candy.inBubble) {
+      final candyPos = candy.body.position;
+      if ((candyPos - worldEnd).length <= CandyComponent.radius * 2.2) {
+        candy.inBubble = false;
+        audioService?.playBubblePop();
+        HapticFeedback.lightImpact();
+      }
+    }
+
     for (final rope in List<RopeComponent>.from(ropes)) {
       if (!rope.cuttable || rope.isCut) continue;
       if (rope.intersectsSwipe(worldStart, worldEnd, ropeCutSensitivity)) {
@@ -299,6 +310,11 @@ class CandyGame extends Forge2DGame {
   @override
   void update(double dt) {
     if (_status == GameStatus.playing) {
+      // Bubble buoyancy (floating upward when enclosed in a bubble)
+      if (candy.isMounted && candy.inBubble) {
+        candy.body.applyForce(Vector2(0, -22.0));
+      }
+
       // If only 1 rope remains, motion must NOT be slow (full momentum swing)
       // so the player must time their slice well to launch into the monster.
       final activeRopes = ropes.where((r) => !r.isCut).toList();

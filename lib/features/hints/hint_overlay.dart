@@ -3,11 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../app/theme/app_theme.dart';
 
-/// Claymorphism dialog shown when the player taps the Hint button.
-/// Handles three flows:
-///   1. Player has hint credits → use one and reveal hint
-///   2. Player has no credits → offer to earn via rewarded ad
-///   3. Offline → show offline message
+/// 3D Claymorphism dialog shown when the player taps the Hint button.
 class HintDialog extends StatelessWidget {
   final bool hasCredits;
   final int creditCount;
@@ -39,76 +35,51 @@ class HintDialog extends StatelessWidget {
           child: Container(
             width: cardWidth,
             padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 26),
-            decoration: BoxDecoration(
-              color: AppTheme.surface,
-              borderRadius: BorderRadius.circular(30),
-              border: Border.all(color: Colors.white.withValues(alpha: 0.8), width: 2),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.22),
-                  offset: const Offset(0, 16),
-                  blurRadius: 36,
-                ),
-                BoxShadow(
-                  color: AppTheme.accent.withValues(alpha: 0.15),
-                  offset: const Offset(0, 4),
-                  blurRadius: 16,
-                ),
-              ],
-            ),
+            decoration: AppTheme.card3D(),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                // Icon
+                // 3D Lightbulb Badge
                 Container(
-                  width: 72,
-                  height: 72,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        AppTheme.accent.withValues(alpha: 0.25),
-                        AppTheme.primary.withValues(alpha: 0.15),
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
+                  width: 76,
+                  height: 76,
+                  decoration: const BoxDecoration(
+                    color: Color(0xFFFFF8E1),
                     shape: BoxShape.circle,
                     boxShadow: [
-                      BoxShadow(
-                        color: AppTheme.accent.withValues(alpha: 0.2),
-                        blurRadius: 14,
-                        offset: const Offset(0, 4),
-                      ),
+                      BoxShadow(color: AppTheme.goldLip, offset: Offset(0, 4), blurRadius: 0),
                     ],
                   ),
                   child: const Center(
-                    child: Text('💡', style: TextStyle(fontSize: 40)),
+                    child: Text('💡', style: TextStyle(fontSize: 42)),
                   ),
-                ).animate()
-                  .scale(begin: const Offset(0.5, 0.5), curve: Curves.elasticOut, duration: 700.ms),
+                ).animate().scale(begin: const Offset(0.5, 0.5), curve: Curves.elasticOut, duration: 700.ms),
 
                 const SizedBox(height: 14),
 
-                Text('Need a Hint?',
-                    style: AppTheme.headline.copyWith(
-                      color: AppTheme.primary,
-                      fontWeight: FontWeight.w700,
-                    )),
+                Text(
+                  'Need a Hint?',
+                  style: AppTheme.headline.copyWith(
+                    color: AppTheme.primaryOrange,
+                    fontSize: 26,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
                 const SizedBox(height: 8),
 
                 if (hasCredits) ...[
                   Container(
                     padding: const EdgeInsets.all(14),
                     decoration: BoxDecoration(
-                      color: const Color(0xFFFFF9E6),
+                      color: const Color(0xFFFFF8E1),
                       borderRadius: BorderRadius.circular(16),
-                      border: Border.all(color: const Color(0xFFFFE082)),
+                      border: Border.all(color: AppTheme.goldYellow, width: 1.5),
                     ),
                     child: Text(
                       hintText,
                       style: AppTheme.body.copyWith(
-                        color: const Color(0xFF6B4700),
-                        fontWeight: FontWeight.w500,
+                        color: AppTheme.textDark,
+                        fontWeight: FontWeight.bold,
                         fontSize: 14,
                       ),
                       textAlign: TextAlign.center,
@@ -119,13 +90,14 @@ class HintDialog extends StatelessWidget {
                     '$creditCount hint credit${creditCount == 1 ? '' : 's'} available',
                     style: AppTheme.caption.copyWith(
                       color: AppTheme.secondary,
-                      fontWeight: FontWeight.w600,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   const SizedBox(height: 18),
-                  _DialogButton(
+                  _3DDialogButton(
                     label: 'Reveal Hint',
-                    color: AppTheme.primary,
+                    bgColor: AppTheme.primaryOrange,
+                    lipColor: AppTheme.orangeLip,
                     onTap: onUseHint,
                   ),
                 ] else ...[
@@ -138,17 +110,22 @@ class HintDialog extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 18),
-                  _DialogButton(
+                  _3DDialogButton(
                     label: '🎬 Watch Ad for Hint',
-                    color: AppTheme.accent,
+                    bgColor: AppTheme.goldYellow,
+                    lipColor: AppTheme.goldLip,
+                    textColor: AppTheme.textDark,
                     onTap: onEarnHint,
                   ),
                 ],
 
                 const SizedBox(height: 10),
-                _DialogButton(
+
+                _3DDialogButton(
                   label: 'Dismiss',
-                  color: Colors.grey.shade400,
+                  bgColor: const Color(0xFFF1F5F9),
+                  lipColor: const Color(0xFFCBD5E1),
+                  textColor: AppTheme.textDark,
                   onTap: onCancel,
                 ),
               ],
@@ -179,25 +156,16 @@ class HintOfflineDialog extends StatelessWidget {
           child: Container(
             width: cardWidth,
             padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 26),
-            decoration: BoxDecoration(
-              color: AppTheme.surface,
-              borderRadius: BorderRadius.circular(30),
-              border: Border.all(color: Colors.white.withValues(alpha: 0.8), width: 2),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.22),
-                  offset: const Offset(0, 16),
-                  blurRadius: 36,
-                ),
-              ],
-            ),
+            decoration: AppTheme.card3D(),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 const Text('📡', style: TextStyle(fontSize: 48)),
                 const SizedBox(height: 12),
-                Text('No Connection',
-                    style: AppTheme.title.copyWith(color: AppTheme.danger, fontWeight: FontWeight.w700)),
+                Text(
+                  'No Connection',
+                  style: AppTheme.title.copyWith(color: AppTheme.danger, fontWeight: FontWeight.bold),
+                ),
                 const SizedBox(height: 8),
                 Text(
                   'An internet connection is needed to watch an ad and earn a hint.',
@@ -208,7 +176,12 @@ class HintOfflineDialog extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 20),
-                _DialogButton(label: 'OK', color: AppTheme.primary, onTap: onDismiss),
+                _3DDialogButton(
+                  label: 'OK',
+                  bgColor: AppTheme.primaryOrange,
+                  lipColor: AppTheme.orangeLip,
+                  onTap: onDismiss,
+                ),
               ],
             ),
           ).animate().scale(begin: const Offset(0.85, 0.85)),
@@ -235,7 +208,14 @@ class HintBanner extends StatelessWidget {
         onTap: onDismiss,
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
-          decoration: AppTheme.clayBox(color: AppTheme.accent, radius: 16),
+          decoration: BoxDecoration(
+            color: AppTheme.goldYellow,
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(color: Colors.white, width: 1.5),
+            boxShadow: const [
+              BoxShadow(color: AppTheme.goldLip, offset: Offset(0, 4), blurRadius: 0),
+            ],
+          ),
           child: Row(
             children: [
               const Text('💡', style: TextStyle(fontSize: 24)),
@@ -243,10 +223,10 @@ class HintBanner extends StatelessWidget {
               Expanded(
                 child: Text(
                   hintText,
-                  style: AppTheme.label.copyWith(color: Colors.white),
+                  style: AppTheme.label.copyWith(color: AppTheme.textDark, fontWeight: FontWeight.bold),
                 ),
               ),
-              const Icon(Icons.close_rounded, color: Colors.white70, size: 18),
+              const Icon(Icons.close_rounded, color: AppTheme.textDark, size: 20),
             ],
           ),
         ).animate().slideY(begin: 1.0, curve: Curves.easeOutBack, duration: 500.ms),
@@ -255,20 +235,46 @@ class HintBanner extends StatelessWidget {
   }
 }
 
-class _DialogButton extends StatelessWidget {
+class _3DDialogButton extends StatelessWidget {
   final String label;
-  final Color color;
+  final Color bgColor;
+  final Color lipColor;
+  final Color textColor;
   final VoidCallback onTap;
-  const _DialogButton({required this.label, required this.color, required this.onTap});
+
+  const _3DDialogButton({
+    required this.label,
+    required this.bgColor,
+    required this.lipColor,
+    this.textColor = Colors.white,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      child: ElevatedButton(
-        onPressed: onTap,
-        style: ElevatedButton.styleFrom(backgroundColor: color),
-        child: Text(label, style: AppTheme.label.copyWith(color: Colors.white)),
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: double.infinity,
+        height: 48,
+        decoration: BoxDecoration(
+          color: bgColor,
+          borderRadius: BorderRadius.circular(24),
+          border: Border.all(color: Colors.white, width: 1.5),
+          boxShadow: [
+            BoxShadow(color: lipColor, offset: const Offset(0, 4), blurRadius: 0),
+          ],
+        ),
+        child: Center(
+          child: Text(
+            label,
+            style: AppTheme.label.copyWith(
+              color: textColor,
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
       ),
     );
   }

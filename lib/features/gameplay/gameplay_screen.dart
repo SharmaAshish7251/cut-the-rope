@@ -315,43 +315,41 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> {
 
     final inventoryAsync = ref.watch(inventoryProvider);
     final inventory = inventoryAsync.valueOrNull ?? const Inventory();
+    final worldIdx = ((widget.levelId - 1) ~/ 10).clamp(0, 9);
+    final theme = _worldThemes[worldIdx];
 
     return Scaffold(
-      backgroundColor: AppTheme.background,
+      backgroundColor: theme.colors.first,
       body: Stack(
         children: [
-          // Background warm clay gradient
+          // Dynamic World Background Gradient
           Positioned.fill(
             child: Container(
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: [
-                    Color(0xFFFFF4E8),
-                    Color(0xFFFFE8D6),
-                    Color(0xFFFFDFC8),
-                  ],
+                  colors: theme.colors,
                 ),
               ),
             ),
           ),
 
-          // Decorative clouds
+          // Decorative World Icons & Shapes
           Positioned(
             top: 70,
             left: -20,
             child: _CloudShape(size: 130, color: Colors.white.withValues(alpha: 0.55)),
           ),
           Positioned(
-            top: 150,
-            right: -30,
-            child: _CloudShape(size: 100, color: Colors.white.withValues(alpha: 0.45)),
+            top: 140,
+            right: -20,
+            child: Icon(theme.icon, size: 110, color: theme.shapeColor),
           ),
           Positioned(
-            bottom: 200,
+            bottom: 220,
             left: 20,
-            child: _CloudShape(size: 80, color: Colors.white.withValues(alpha: 0.3)),
+            child: Icon(theme.icon, size: 80, color: theme.shapeColor.withValues(alpha: 0.15)),
           ),
 
           // Game canvas wrapped with GestureDetector for swipe-to-cut
@@ -434,11 +432,22 @@ class _GameplayScreenState extends ConsumerState<GameplayScreen> {
                     },
                   ),
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-                    decoration: AppTheme.clayBox(color: AppTheme.surface, radius: 16),
+                    padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(color: AppTheme.cardBorder, width: 1.5),
+                      boxShadow: const [
+                        BoxShadow(color: AppTheme.cardLip, offset: Offset(0, 3), blurRadius: 0),
+                      ],
+                    ),
                     child: Text(
                       'Level ${widget.levelId}',
-                      style: AppTheme.label.copyWith(color: AppTheme.primary),
+                      style: AppTheme.label.copyWith(
+                        color: AppTheme.primaryOrange,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15,
+                      ),
                     ),
                   ),
                   Row(
@@ -609,28 +618,42 @@ class _HudButton extends StatelessWidget {
         clipBehavior: Clip.none,
         children: [
           Container(
-            width: 44, height: 44,
-            decoration: AppTheme.clayBox(color: AppTheme.surface, radius: 14),
-            child: Icon(icon,
-                color: onTap != null ? AppTheme.primary : Colors.grey,
-                size: 24),
+            width: 48,
+            height: 48,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: AppTheme.cardBorder, width: 1.5),
+              boxShadow: const [
+                BoxShadow(color: AppTheme.cardLip, offset: Offset(0, 4), blurRadius: 0),
+              ],
+            ),
+            child: Icon(
+              icon,
+              color: onTap != null ? AppTheme.primaryOrange : Colors.grey.shade400,
+              size: 24,
+            ),
           ),
           if (badge != null)
             Positioned(
               top: -4,
               right: -4,
               child: Container(
-                padding: const EdgeInsets.all(4),
-                decoration: const BoxDecoration(
-                  color: AppTheme.accent,
-                  shape: BoxShape.circle,
+                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                decoration: BoxDecoration(
+                  color: AppTheme.goldYellow,
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Colors.white, width: 1.5),
+                  boxShadow: const [
+                    BoxShadow(color: AppTheme.goldLip, offset: Offset(0, 2), blurRadius: 0),
+                  ],
                 ),
                 child: Text(
                   badge!,
                   style: const TextStyle(
-                    fontSize: 9,
+                    fontSize: 10,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                    color: AppTheme.textDark,
                   ),
                 ),
               ),
@@ -751,6 +774,81 @@ class _Level1TutorialGuideOverlay extends StatelessWidget {
     );
   }
 }
+
+class _WorldTheme {
+  final List<Color> colors;
+  final IconData icon;
+  final Color shapeColor;
+
+  const _WorldTheme({
+    required this.colors,
+    required this.icon,
+    required this.shapeColor,
+  });
+}
+
+const _worldThemes = [
+  // World 1: Candy Garden
+  _WorldTheme(
+    colors: [Color(0xFFFFF4E8), Color(0xFFFFE8D6), Color(0xFFE8F5E9)],
+    icon: Icons.grass_rounded,
+    shapeColor: Color(0x3381C784),
+  ),
+  // World 2: Toy Workshop
+  _WorldTheme(
+    colors: [Color(0xFFFFF3E0), Color(0xFFFFE0B2), Color(0xFFFFCC80)],
+    icon: Icons.extension_rounded,
+    shapeColor: Color(0x33FFB74D),
+  ),
+  // World 3: Sky Islands
+  _WorldTheme(
+    colors: [Color(0xFFE0F7FA), Color(0xFFB2EBF2), Color(0xFF80DEEA)],
+    icon: Icons.cloud_rounded,
+    shapeColor: Color(0x4480DEEA),
+  ),
+  // World 4: Cookie Caves
+  _WorldTheme(
+    colors: [Color(0xFFEFEBE9), Color(0xFFD7CCC8), Color(0xFFBCAAA4)],
+    icon: Icons.cookie_rounded,
+    shapeColor: Color(0x33A1887F),
+  ),
+  // World 5: Jelly Jungle
+  _WorldTheme(
+    colors: [Color(0xFFE8F8F5), Color(0xFFA3E4D7), Color(0xFF76D7C4)],
+    icon: Icons.forest_rounded,
+    shapeColor: Color(0x3348C9B0),
+  ),
+  // World 6: Frosty Peaks
+  _WorldTheme(
+    colors: [Color(0xFFE0F2FE), Color(0xFFBAE6FD), Color(0xFF7DD3FC)],
+    icon: Icons.ac_unit_rounded,
+    shapeColor: Color(0x4438BDF8),
+  ),
+  // World 7: Magic Kingdom
+  _WorldTheme(
+    colors: [Color(0xFFF3E5F5), Color(0xFFE1BEE7), Color(0xFFCE93D8)],
+    icon: Icons.auto_awesome_rounded,
+    shapeColor: Color(0x33AB47BC),
+  ),
+  // World 8: Cyber City
+  _WorldTheme(
+    colors: [Color(0xFFECEFF1), Color(0xFFCFD8DC), Color(0xFFB0BEC5)],
+    icon: Icons.memory_rounded,
+    shapeColor: Color(0x3378909C),
+  ),
+  // World 9: Cosmic Realm
+  _WorldTheme(
+    colors: [Color(0xFFEDE7F6), Color(0xFFD1C4E9), Color(0xFFB39DDB)],
+    icon: Icons.auto_awesome_mosaic_rounded,
+    shapeColor: Color(0x337E57C2),
+  ),
+  // World 10: Candy Citadel
+  _WorldTheme(
+    colors: [Color(0xFFFFF8E1), Color(0xFFFFECB3), Color(0xFFFFE082)],
+    icon: Icons.fort_rounded,
+    shapeColor: Color(0x33FFCA28),
+  ),
+];
 
 
 

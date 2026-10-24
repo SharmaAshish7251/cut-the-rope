@@ -32,111 +32,96 @@ class FailureOverlay extends StatelessWidget {
           child: Container(
             width: cardWidth,
             padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 26),
-            decoration: BoxDecoration(
-              color: AppTheme.surface,
-              borderRadius: BorderRadius.circular(30),
-              border: Border.all(color: Colors.white.withValues(alpha: 0.8), width: 2),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.22),
-                  offset: const Offset(0, 16),
-                  blurRadius: 36,
-                ),
-                BoxShadow(
-                  color: AppTheme.primary.withValues(alpha: 0.12),
-                  offset: const Offset(0, 4),
-                  blurRadius: 16,
-                ),
-              ],
-            ),
+            decoration: AppTheme.card3D(),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                // Animated sad monster / candy badge
+                // 3D Sad Emoji Badge
                 Container(
                   width: 76,
                   height: 76,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        AppTheme.danger.withValues(alpha: 0.18),
-                        AppTheme.primary.withValues(alpha: 0.10),
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
+                  decoration: const BoxDecoration(
+                    color: Color(0xFFFFEBEE),
                     shape: BoxShape.circle,
                     boxShadow: [
-                      BoxShadow(
-                        color: AppTheme.danger.withValues(alpha: 0.15),
-                        blurRadius: 14,
-                        offset: const Offset(0, 4),
-                      ),
+                      BoxShadow(color: Color(0xFFFFCDD2), offset: Offset(0, 4), blurRadius: 0),
                     ],
                   ),
                   child: const Center(
                     child: Text('😢', style: TextStyle(fontSize: 44)),
                   ),
-                ).animate()
-                  .scale(begin: const Offset(0.5, 0.5), curve: Curves.elasticOut, duration: 700.ms),
+                ).animate().scale(begin: const Offset(0.5, 0.5), curve: Curves.elasticOut, duration: 700.ms),
 
-                const SizedBox(height: 12),
+                const SizedBox(height: 14),
+
                 Text(
                   'Oh no!',
                   style: AppTheme.headline.copyWith(
                     color: AppTheme.danger,
-                    fontWeight: FontWeight.w700,
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  "The candy didn't make it to Om Nom!",
+                  "The candy didn't make it to Nomi!",
                   style: AppTheme.body.copyWith(
-                    color: AppTheme.textDark.withValues(alpha: 0.65),
+                    color: AppTheme.textDark.withValues(alpha: 0.7),
                     fontSize: 13,
                   ),
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 20),
 
-                // Primary Hero Action: Try Again
-                _HeroActionButton(
-                  label: 'Try Again',
-                  icon: Icons.replay_rounded,
-                  gradient: const LinearGradient(
-                    colors: [Color(0xFFFF8A65), Color(0xFFFF6E40)],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                  shadowColor: const Color(0xFFFF6E40).withValues(alpha: 0.4),
+                const SizedBox(height: 22),
+
+                // Primary 3D Hero Action: Try Again
+                GestureDetector(
                   onTap: onRetry,
+                  child: Container(
+                    width: double.infinity,
+                    height: 52,
+                    decoration: AppTheme.primaryButton3D(),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(Icons.replay_rounded, color: Colors.white, size: 22),
+                        const SizedBox(width: 8),
+                        Text(
+                          'Try Again',
+                          style: AppTheme.title.copyWith(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
 
                 const SizedBox(height: 12),
 
-                // Helpers Row: Hint and Boosters (No text wrap, crisp icons)
+                // 3D Helpers Row: Hint and Boosters
                 Row(
                   children: [
                     Expanded(
-                      child: _ChipButton(
+                      child: _3DChipButton(
                         label: 'Hint',
                         icon: Icons.lightbulb_rounded,
-                        bgColor: const Color(0xFFFFF3D6),
-                        iconColor: const Color(0xFFD49100),
-                        textColor: const Color(0xFF7A5400),
-                        borderColor: const Color(0xFFFFD166).withValues(alpha: 0.6),
+                        bgColor: AppTheme.goldYellow,
+                        lipColor: AppTheme.goldLip,
+                        textColor: AppTheme.textDark,
                         onTap: onHint,
                       ),
                     ),
                     const SizedBox(width: 10),
                     Expanded(
-                      child: _ChipButton(
+                      child: _3DChipButton(
                         label: 'Boosters',
                         icon: Icons.bolt_rounded,
-                        bgColor: const Color(0xFFEDE9FE),
-                        iconColor: const Color(0xFF7C3AED),
-                        textColor: const Color(0xFF5B21B6),
-                        borderColor: const Color(0xFF8B7CF6).withValues(alpha: 0.6),
+                        bgColor: AppTheme.secondary,
+                        lipColor: const Color(0xFF6D52E6),
+                        textColor: Colors.white,
                         onTap: onBooster,
                       ),
                     ),
@@ -145,21 +130,27 @@ class FailureOverlay extends StatelessWidget {
 
                 const SizedBox(height: 12),
 
-                // Sleek Navigation Footer Row: Level Map and Home
+                // 3D Navigation Footer Row: Level Map and Home
                 Row(
                   children: [
                     Expanded(
-                      child: _NavButton(
+                      child: _3DChipButton(
                         label: 'Levels',
                         icon: Icons.grid_view_rounded,
+                        bgColor: const Color(0xFFF1F5F9),
+                        lipColor: const Color(0xFFCBD5E1),
+                        textColor: AppTheme.textDark,
                         onTap: onLevelMap,
                       ),
                     ),
                     const SizedBox(width: 10),
                     Expanded(
-                      child: _NavButton(
+                      child: _3DChipButton(
                         label: 'Home',
                         icon: Icons.home_rounded,
+                        bgColor: const Color(0xFFF1F5F9),
+                        lipColor: const Color(0xFFCBD5E1),
+                        textColor: AppTheme.textDark,
                         onTap: onHome,
                       ),
                     ),
@@ -174,182 +165,51 @@ class FailureOverlay extends StatelessWidget {
   }
 }
 
-class _HeroActionButton extends StatelessWidget {
-  final String label;
-  final IconData icon;
-  final Gradient gradient;
-  final Color shadowColor;
-  final VoidCallback onTap;
-
-  const _HeroActionButton({
-    required this.label,
-    required this.icon,
-    required this.gradient,
-    required this.shadowColor,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 52,
-      decoration: BoxDecoration(
-        gradient: gradient,
-        borderRadius: BorderRadius.circular(26),
-        boxShadow: [
-          BoxShadow(
-            color: shadowColor,
-            blurRadius: 14,
-            offset: const Offset(0, 6),
-          ),
-          BoxShadow(
-            color: Colors.white.withValues(alpha: 0.3),
-            blurRadius: 2,
-            offset: const Offset(0, -1),
-          ),
-        ],
-      ),
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          onTap: onTap,
-          borderRadius: BorderRadius.circular(26),
-          splashColor: Colors.white.withValues(alpha: 0.2),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(icon, color: Colors.white, size: 22),
-              const SizedBox(width: 8),
-              Text(
-                label,
-                style: AppTheme.label.copyWith(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w700,
-                  letterSpacing: 0.6,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _ChipButton extends StatelessWidget {
+class _3DChipButton extends StatelessWidget {
   final String label;
   final IconData icon;
   final Color bgColor;
-  final Color iconColor;
+  final Color lipColor;
   final Color textColor;
-  final Color borderColor;
   final VoidCallback onTap;
 
-  const _ChipButton({
+  const _3DChipButton({
     required this.label,
     required this.icon,
     required this.bgColor,
-    required this.iconColor,
+    required this.lipColor,
     required this.textColor,
-    required this.borderColor,
     required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 44,
-      decoration: BoxDecoration(
-        color: bgColor,
-        borderRadius: BorderRadius.circular(22),
-        border: Border.all(color: borderColor, width: 1.5),
-        boxShadow: [
-          BoxShadow(
-            color: iconColor.withValues(alpha: 0.12),
-            blurRadius: 6,
-            offset: const Offset(0, 3),
-          ),
-        ],
-      ),
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          onTap: onTap,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: 46,
+        decoration: BoxDecoration(
+          color: bgColor,
           borderRadius: BorderRadius.circular(22),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(icon, color: iconColor, size: 18),
-                const SizedBox(width: 6),
-                Flexible(
-                  child: Text(
-                    label,
-                    style: AppTheme.label.copyWith(
-                      color: textColor,
-                      fontSize: 13,
-                      fontWeight: FontWeight.w700,
-                      letterSpacing: 0.2,
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-              ],
-            ),
-          ),
+          border: Border.all(color: Colors.white, width: 1.5),
+          boxShadow: [
+            BoxShadow(color: lipColor, offset: const Offset(0, 4), blurRadius: 0),
+          ],
         ),
-      ),
-    );
-  }
-}
-
-class _NavButton extends StatelessWidget {
-  final String label;
-  final IconData icon;
-  final VoidCallback onTap;
-
-  const _NavButton({
-    required this.label,
-    required this.icon,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 44,
-      decoration: BoxDecoration(
-        color: const Color(0xFFF1F3F5),
-        borderRadius: BorderRadius.circular(22),
-        border: Border.all(color: Colors.grey.shade300, width: 1.2),
-      ),
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          onTap: onTap,
-          borderRadius: BorderRadius.circular(22),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(icon, color: const Color(0xFF6B7280), size: 18),
-                const SizedBox(width: 6),
-                Text(
-                  label,
-                  style: AppTheme.label.copyWith(
-                    color: const Color(0xFF4B5563),
-                    fontSize: 13,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ],
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icon, color: textColor, size: 18),
+            const SizedBox(width: 6),
+            Text(
+              label,
+              style: AppTheme.label.copyWith(
+                color: textColor,
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );

@@ -38,65 +38,40 @@ class VictoryOverlay extends StatelessWidget {
           child: Container(
             width: cardWidth,
             padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 26),
-            decoration: BoxDecoration(
-              color: AppTheme.surface,
-              borderRadius: BorderRadius.circular(30),
-              border: Border.all(color: Colors.white.withValues(alpha: 0.8), width: 2),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.22),
-                  offset: const Offset(0, 16),
-                  blurRadius: 36,
-                ),
-                BoxShadow(
-                  color: AppTheme.success.withValues(alpha: 0.15),
-                  offset: const Offset(0, 4),
-                  blurRadius: 16,
-                ),
-              ],
-            ),
+            decoration: AppTheme.card3D(),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                // Celebration Badge
+                // 3D Celebration Badge
                 Container(
                   width: 76,
                   height: 76,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        AppTheme.success.withValues(alpha: 0.20),
-                        AppTheme.accent.withValues(alpha: 0.15),
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
+                  decoration: const BoxDecoration(
+                    color: Color(0xFFE8F5E9),
                     shape: BoxShape.circle,
                     boxShadow: [
-                      BoxShadow(
-                        color: AppTheme.success.withValues(alpha: 0.15),
-                        blurRadius: 14,
-                        offset: const Offset(0, 4),
-                      ),
+                      BoxShadow(color: Color(0xFFC8E6C9), offset: Offset(0, 4), blurRadius: 0),
                     ],
                   ),
                   child: const Center(
                     child: Text('🎉', style: TextStyle(fontSize: 44)),
                   ),
-                ).animate()
-                  .scale(begin: const Offset(0, 0), curve: Curves.elasticOut, duration: 800.ms),
+                ).animate().scale(begin: const Offset(0, 0), curve: Curves.elasticOut, duration: 800.ms),
 
                 const SizedBox(height: 10),
+
                 Text(
                   levelId == 100 ? '🏆 Game Complete!' : 'Level Complete!',
                   style: AppTheme.headline.copyWith(
-                    color: AppTheme.success,
-                    fontWeight: FontWeight.w700,
+                    color: AppTheme.successGreen,
+                    fontSize: 26,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
+
                 const SizedBox(height: 14),
 
-                // Star Podium (Center star elevated)
+                // Crisp 3D Star Podium (Center star elevated, crisp 3D styling)
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -110,32 +85,27 @@ class VictoryOverlay extends StatelessWidget {
                         horizontal: 6,
                         vertical: isCenter ? 0 : 8,
                       ),
-                      child: Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          if (isEarned)
-                            Container(
-                              width: size * 0.85,
-                              height: size * 0.85,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: const Color(0xFFFFD166).withValues(alpha: 0.6),
-                                    blurRadius: 14,
-                                    spreadRadius: 2,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          Icon(
-                            Icons.star_rounded,
-                            size: size,
-                            color: isEarned
-                                ? const Color(0xFFFFB703)
-                                : const Color(0xFFE2E8F0),
-                          ),
-                        ],
+                      child: Icon(
+                        Icons.star_rounded,
+                        size: size,
+                        color: isEarned
+                            ? AppTheme.goldYellow
+                            : const Color(0xFFE2E8F0),
+                        shadows: isEarned
+                            ? const [
+                                Shadow(
+                                  color: AppTheme.goldLip,
+                                  offset: Offset(0, 3),
+                                  blurRadius: 0,
+                                ),
+                              ]
+                            : const [
+                                Shadow(
+                                  color: Color(0xFFCBD5E1),
+                                  offset: Offset(0, 2),
+                                  blurRadius: 0,
+                                ),
+                              ],
                       ).animate(delay: (i * 180).ms)
                         .scale(begin: const Offset(0, 0), curve: Curves.elasticOut),
                     );
@@ -144,44 +114,53 @@ class VictoryOverlay extends StatelessWidget {
 
                 const SizedBox(height: 14),
 
-                // Score & Coins Capsule
+                // 3D Score & Coins Capsule Card
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   decoration: BoxDecoration(
-                    color: const Color(0xFFF8F9FA),
-                    borderRadius: BorderRadius.circular(18),
-                    border: Border.all(color: Colors.grey.shade200),
+                    color: const Color(0xFFF8FAFC),
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(color: AppTheme.cardBorder, width: 1.5),
+                    boxShadow: const [
+                      BoxShadow(color: AppTheme.cardLip, offset: Offset(0, 3), blurRadius: 0),
+                    ],
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Column(
                         children: [
-                          Text('SCORE',
-                              style: AppTheme.caption.copyWith(
-                                color: Colors.grey.shade600,
-                                fontWeight: FontWeight.bold,
-                                letterSpacing: 0.6,
-                              )),
+                          Text(
+                            'SCORE',
+                            style: AppTheme.caption.copyWith(
+                              color: AppTheme.textDark.withValues(alpha: 0.6),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 11,
+                              letterSpacing: 0.5,
+                            ),
+                          ),
+                          const SizedBox(height: 2),
                           Text(
                             '$score',
                             style: AppTheme.title.copyWith(
                               color: AppTheme.textDark,
-                              fontWeight: FontWeight.w700,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 19,
                             ),
                           ),
                         ],
                       ),
-                      Container(width: 1, height: 28, color: Colors.grey.shade300),
+                      Container(width: 1.5, height: 32, color: AppTheme.cardBorder),
                       Row(
                         children: [
-                          const Text('💰', style: TextStyle(fontSize: 20)),
+                          const Text('🪙', style: TextStyle(fontSize: 22)),
                           const SizedBox(width: 6),
                           Text(
                             '+$currencyEarned',
                             style: AppTheme.title.copyWith(
-                              color: const Color(0xFFD49100),
-                              fontWeight: FontWeight.w700,
+                              color: AppTheme.goldLip,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 19,
                             ),
                           ),
                         ],
@@ -195,16 +174,11 @@ class VictoryOverlay extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
                     decoration: BoxDecoration(
-                      gradient: const LinearGradient(
-                        colors: [Color(0xFFFFD166), Color(0xFFFF8A65)],
-                      ),
+                      color: AppTheme.goldYellow,
                       borderRadius: BorderRadius.circular(16),
-                      boxShadow: [
-                        BoxShadow(
-                          color: const Color(0xFFFF8A65).withValues(alpha: 0.35),
-                          blurRadius: 8,
-                          offset: const Offset(0, 3),
-                        ),
+                      border: Border.all(color: Colors.white, width: 1.5),
+                      boxShadow: const [
+                        BoxShadow(color: AppTheme.goldLip, offset: Offset(0, 3), blurRadius: 0),
                       ],
                     ),
                     child: Row(
@@ -216,7 +190,7 @@ class VictoryOverlay extends StatelessWidget {
                           child: Text(
                             'New World Unlocked!\n$unlockedWorldName',
                             style: AppTheme.label.copyWith(
-                              color: Colors.white,
+                              color: AppTheme.textDark,
                               fontWeight: FontWeight.bold,
                               fontSize: 12,
                             ),
@@ -228,52 +202,57 @@ class VictoryOverlay extends StatelessWidget {
                   ).animate().scale(curve: Curves.elasticOut, duration: 600.ms),
                 ],
 
-                if (levelId == 100) ...[
-                  const SizedBox(height: 12),
-                  Text('🏆 You completed all 100 levels!',
-                      style: AppTheme.label.copyWith(color: AppTheme.success),
-                      textAlign: TextAlign.center),
-                ],
+                const SizedBox(height: 20),
 
-                const SizedBox(height: 18),
-
-                // Primary Hero Action: Next Level (or Replay on 100)
+                // 3D Primary Hero Action: Next Level
                 if (onNext != null)
-                  _HeroVictoryButton(
-                    label: 'Next Level',
-                    icon: Icons.arrow_forward_rounded,
-                    gradient: const LinearGradient(
-                      colors: [Color(0xFF65C98B), Color(0xFF48B671)],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                    shadowColor: const Color(0xFF65C98B).withValues(alpha: 0.4),
+                  GestureDetector(
                     onTap: onNext!,
+                    child: Container(
+                      width: double.infinity,
+                      height: 54,
+                      decoration: AppTheme.successButton3D(),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Next Level',
+                            style: AppTheme.title.copyWith(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          const Icon(Icons.arrow_forward_rounded, color: Colors.white, size: 24),
+                        ],
+                      ),
+                    ),
                   ),
 
-                const SizedBox(height: 10),
+                const SizedBox(height: 12),
 
-                // Navigation Row: Replay and Level Map
+                // 3D Navigation Row: Replay and Level Map
                 Row(
                   children: [
                     Expanded(
-                      child: _VictoryNavButton(
+                      child: _3DVictoryNavButton(
                         label: 'Replay',
                         icon: Icons.replay_rounded,
-                        color: const Color(0xFFEDE9FE),
-                        textColor: const Color(0xFF5B21B6),
-                        borderColor: const Color(0xFF8B7CF6).withValues(alpha: 0.5),
+                        bgColor: AppTheme.secondary,
+                        lipColor: const Color(0xFF6D52E6),
+                        textColor: Colors.white,
                         onTap: onReplay,
                       ),
                     ),
-                    const SizedBox(width: 10),
+                    const SizedBox(width: 12),
                     Expanded(
-                      child: _VictoryNavButton(
+                      child: _3DVictoryNavButton(
                         label: 'Levels',
                         icon: Icons.grid_view_rounded,
-                        color: const Color(0xFFF1F3F5),
-                        textColor: const Color(0xFF4B5563),
-                        borderColor: Colors.grey.shade300,
+                        bgColor: const Color(0xFFF1F5F9),
+                        lipColor: const Color(0xFFCBD5E1),
+                        textColor: AppTheme.textDark,
                         onTap: onLevelMap,
                       ),
                     ),
@@ -288,119 +267,51 @@ class VictoryOverlay extends StatelessWidget {
   }
 }
 
-class _HeroVictoryButton extends StatelessWidget {
+class _3DVictoryNavButton extends StatelessWidget {
   final String label;
   final IconData icon;
-  final Gradient gradient;
-  final Color shadowColor;
-  final VoidCallback onTap;
-
-  const _HeroVictoryButton({
-    required this.label,
-    required this.icon,
-    required this.gradient,
-    required this.shadowColor,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 52,
-      decoration: BoxDecoration(
-        gradient: gradient,
-        borderRadius: BorderRadius.circular(26),
-        boxShadow: [
-          BoxShadow(
-            color: shadowColor,
-            blurRadius: 14,
-            offset: const Offset(0, 6),
-          ),
-          BoxShadow(
-            color: Colors.white.withValues(alpha: 0.3),
-            blurRadius: 2,
-            offset: const Offset(0, -1),
-          ),
-        ],
-      ),
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          onTap: onTap,
-          borderRadius: BorderRadius.circular(26),
-          splashColor: Colors.white.withValues(alpha: 0.2),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                label,
-                style: AppTheme.label.copyWith(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w700,
-                  letterSpacing: 0.6,
-                ),
-              ),
-              const SizedBox(width: 8),
-              Icon(icon, color: Colors.white, size: 22),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _VictoryNavButton extends StatelessWidget {
-  final String label;
-  final IconData icon;
-  final Color color;
+  final Color bgColor;
+  final Color lipColor;
   final Color textColor;
-  final Color borderColor;
   final VoidCallback onTap;
 
-  const _VictoryNavButton({
+  const _3DVictoryNavButton({
     required this.label,
     required this.icon,
-    required this.color,
+    required this.bgColor,
+    required this.lipColor,
     required this.textColor,
-    required this.borderColor,
     required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 44,
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(22),
-        border: Border.all(color: borderColor, width: 1.2),
-      ),
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          onTap: onTap,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: 48,
+        decoration: BoxDecoration(
+          color: bgColor,
           borderRadius: BorderRadius.circular(22),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(icon, color: textColor, size: 18),
-                const SizedBox(width: 6),
-                Text(
-                  label,
-                  style: AppTheme.label.copyWith(
-                    color: textColor,
-                    fontSize: 13,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ],
+          border: Border.all(color: Colors.white, width: 1.5),
+          boxShadow: [
+            BoxShadow(color: lipColor, offset: const Offset(0, 4), blurRadius: 0),
+          ],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icon, color: textColor, size: 20),
+            const SizedBox(width: 6),
+            Text(
+              label,
+              style: AppTheme.label.copyWith(
+                color: textColor,
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );

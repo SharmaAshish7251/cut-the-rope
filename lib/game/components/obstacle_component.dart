@@ -50,6 +50,7 @@ class ObstacleComponent extends BodyComponent<CandyGame> with ContactCallbacks {
       } else if (type.contains('bounce') || type.contains('bumper')) {
         _handleBumperBounce(other);
       } else if (type.contains('bubble')) {
+        other.inBubble = true;
         game.audioService?.playBubblePop();
         HapticFeedback.lightImpact();
       }

@@ -141,7 +141,7 @@ class _GrandFinaleScreenState extends ConsumerState<GrandFinaleScreen>
 
                     const SizedBox(height: 8),
                     Text(
-                      'You conquered all 100 levels and fed the monster across every single world!',
+                      'You conquered all 100 levels and fed Nomi across every single world!',
                       textAlign: TextAlign.center,
                       style: AppTheme.body.copyWith(
                         color: Colors.white70,

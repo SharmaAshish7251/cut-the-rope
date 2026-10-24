@@ -7,7 +7,7 @@ import '../../app/router.dart';
 import '../../app/theme/app_theme.dart';
 
 /// Interactive onboarding tutorial.
-/// Walks the player through core mechanics with animated guidance panels.
+/// Walks the player through core mechanics with 3D claymorphism panels.
 class OnboardingScreen extends ConsumerStatefulWidget {
   const OnboardingScreen({super.key});
 
@@ -24,7 +24,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       emoji: '🍬',
       title: 'Welcome to Cut the Cable!',
       body:
-          'Help the candy reach the hungry monster by cutting ropes with your finger.',
+          'Help the candy reach Nomi by cutting ropes with your finger.',
       gesture: _GestureType.none,
     ),
     _TutorialStep(
@@ -38,14 +38,14 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       emoji: '⭐',
       title: 'Collect Stars',
       body:
-          'Guide the candy through stars before it reaches the monster. Collect all 3 for a perfect score!',
+          'Guide the candy through stars before it reaches Nomi. Collect all 3 for a perfect score!',
       gesture: _GestureType.none,
     ),
     _TutorialStep(
       emoji: '👾',
-      title: 'Feed the Monster',
+      title: 'Feed Nomi',
       body:
-          'The monster is waiting at the bottom! Deliver the candy to its mouth to complete the level.',
+          "Nomi is waiting at the bottom! Deliver the candy to Nomi's mouth to complete the level.",
       gesture: _GestureType.none,
     ),
     _TutorialStep(
@@ -96,17 +96,31 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            // Skip button
+            // Pill 3D Skip Button
             Align(
               alignment: Alignment.topRight,
               child: Padding(
                 padding: const EdgeInsets.all(16),
-                child: TextButton(
-                  onPressed: _skip,
-                  child: Text('Skip',
+                child: GestureDetector(
+                  onTap: _skip,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(color: AppTheme.cardBorder, width: 1.5),
+                      boxShadow: const [
+                        BoxShadow(color: AppTheme.cardLip, offset: Offset(0, 3), blurRadius: 0),
+                      ],
+                    ),
+                    child: Text(
+                      'Skip',
                       style: AppTheme.label.copyWith(
-                        color: AppTheme.textDark.withValues(alpha: 0.5),
-                      )),
+                        color: AppTheme.textDark,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -121,7 +135,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
               ),
             ),
 
-            // Dots
+            // 3D Dots
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 16),
               child: Row(
@@ -131,34 +145,38 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                   return AnimatedContainer(
                     duration: const Duration(milliseconds: 250),
                     margin: const EdgeInsets.symmetric(horizontal: 4),
-                    width: active ? 28 : 8,
-                    height: 8,
+                    width: active ? 28 : 10,
+                    height: 10,
                     decoration: BoxDecoration(
-                      color: active ? AppTheme.primary : AppTheme.primary.withValues(alpha: 0.2),
-                      borderRadius: BorderRadius.circular(4),
+                      color: active ? AppTheme.primaryOrange : AppTheme.cardLip,
+                      borderRadius: BorderRadius.circular(5),
+                      boxShadow: active
+                          ? const [BoxShadow(color: AppTheme.orangeLip, offset: Offset(0, 2), blurRadius: 0)]
+                          : null,
                     ),
                   );
                 }),
               ),
             ),
 
-            // Next / Start button
+            // 3D Next / Let's Go Button
             Padding(
               padding: const EdgeInsets.fromLTRB(32, 0, 32, 32),
-              child: SizedBox(
-                width: double.infinity,
-                height: 56,
-                child: ElevatedButton(
-                  onPressed: _nextStep,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: isLast ? AppTheme.success : AppTheme.primary,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(AppTheme.buttonCorner),
+              child: GestureDetector(
+                onTap: _nextStep,
+                child: Container(
+                  width: double.infinity,
+                  height: 60,
+                  decoration: isLast ? AppTheme.successButton3D() : AppTheme.primaryButton3D(),
+                  child: Center(
+                    child: Text(
+                      isLast ? "Let's Go! 🎮" : 'Next',
+                      style: AppTheme.title.copyWith(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 22,
+                      ),
                     ),
-                  ),
-                  child: Text(
-                    isLast ? "Let's Go! 🎮" : 'Next',
-                    style: AppTheme.title.copyWith(color: Colors.white),
                   ),
                 ),
               ).animate().fadeIn(delay: 200.ms),
@@ -201,45 +219,54 @@ class _TutorialPage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // Big emoji
+          // Puffy 3D Circle Image Container
           Container(
-            width: 140,
-            height: 140,
+            width: 170,
+            height: 170,
             decoration: BoxDecoration(
-              color: AppTheme.primary.withValues(alpha: 0.08),
+              color: Colors.white,
               shape: BoxShape.circle,
+              border: Border.all(color: AppTheme.cardBorder, width: 3),
+              boxShadow: const [
+                BoxShadow(color: AppTheme.cardLip, offset: Offset(0, 8), blurRadius: 0),
+              ],
             ),
             child: Center(
-              child: Text(step.emoji, style: const TextStyle(fontSize: 72)),
+              child: Text(step.emoji, style: const TextStyle(fontSize: 84)),
             ),
           )
               .animate()
               .scale(begin: const Offset(0.6, 0.6), curve: Curves.elasticOut, duration: 600.ms),
 
-          const SizedBox(height: 32),
+          const SizedBox(height: 36),
 
           // Title
           Text(
             step.title,
-            style: AppTheme.headline.copyWith(color: AppTheme.primary),
+            style: AppTheme.headline.copyWith(
+              color: AppTheme.primaryOrange,
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+            ),
             textAlign: TextAlign.center,
           ).animate().fadeIn(delay: 150.ms).slideY(begin: 0.2),
 
-          const SizedBox(height: 16),
+          const SizedBox(height: 14),
 
           // Body
           Text(
             step.body,
             style: AppTheme.body.copyWith(
-              color: AppTheme.textDark.withValues(alpha: 0.7),
-              height: 1.5,
+              color: AppTheme.textDark.withValues(alpha: 0.8),
+              fontSize: 16,
+              height: 1.45,
             ),
             textAlign: TextAlign.center,
           ).animate().fadeIn(delay: 250.ms),
 
           // Animated gesture hint
           if (step.gesture == _GestureType.swipe) ...[
-            const SizedBox(height: 32),
+            const SizedBox(height: 28),
             _SwipeGestureHint(),
           ],
         ],
@@ -266,7 +293,7 @@ class _SwipeGestureHint extends StatelessWidget {
             ),
           ),
           // Animated finger icon
-          const Icon(Icons.touch_app_rounded, size: 36, color: AppTheme.primary)
+          const Icon(Icons.touch_app_rounded, size: 38, color: AppTheme.primaryOrange)
               .animate(onPlay: (c) => c.repeat(reverse: true))
               .moveX(begin: -40, end: 40, duration: 1200.ms, curve: Curves.easeInOut),
         ],

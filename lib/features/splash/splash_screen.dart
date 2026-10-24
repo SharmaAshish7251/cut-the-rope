@@ -32,10 +32,12 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
   Future<void> _startInit() async {
     // Load config
     await ref.read(gameConfigProvider.future);
+    if (!mounted) return;
 
     // Wait until progress is loaded
     while (ref.read(progressProvider).isLoading) {
       await Future.delayed(const Duration(milliseconds: 50));
+      if (!mounted) return;
     }
 
     // Configure audio
@@ -47,15 +49,15 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
 
     // Minimum splash time
     await Future.delayed(const Duration(seconds: 2));
-    if (mounted && !_navigated) {
-      _navigated = true;
-      // Route to onboarding if tutorial not completed, otherwise home
-      final progress = ref.read(progressProvider).valueOrNull;
-      if (progress != null && !progress.tutorialCompleted) {
-        context.go(AppRoutes.onboarding);
-      } else {
-        context.go(AppRoutes.home);
-      }
+    if (!mounted || _navigated) return;
+
+    _navigated = true;
+    // Route to onboarding if tutorial not completed, otherwise home
+    final progress = ref.read(progressProvider).valueOrNull;
+    if (progress != null && !progress.tutorialCompleted) {
+      context.go(AppRoutes.onboarding);
+    } else {
+      context.go(AppRoutes.home);
     }
   }
 
@@ -98,7 +100,8 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
               const SizedBox(height: 8),
               Text(
                 'A sweet puzzle adventure',
-                style: AppTheme.body.copyWith(color: AppTheme.textDark.withValues(alpha: 0.6)),
+                style: AppTheme.body
+                    .copyWith(color: AppTheme.textDark.withValues(alpha: 0.6)),
               ).animate().fadeIn(delay: 300.ms, duration: 600.ms),
               const Spacer(flex: 2),
               Container(

@@ -157,4 +157,28 @@ class PlayerProgress {
     if (worldId <= 1 || isWorldUnlocked(worldId, requirements)) return 0;
     return requirements[worldId - 1] - totalStars;
   }
+
+  /// Checks whether a specific level is unlocked for the player.
+  /// A level is unlocked if:
+  ///   1. It is Level 1, OR
+  ///   2. Its level progress is explicitly marked unlocked, OR
+  ///   3. The previous level is completed, OR
+  ///   4. It is the first level of a world (e.g. Level 11, 21, 31...) AND that world is unlocked!
+  bool isLevelUnlocked(int levelId, List<int> requirements) {
+    if (levelId == 1) return true;
+    final lp = levels[levelId];
+    if (lp != null && (lp.unlocked || lp.completed)) return true;
+
+    // Check if previous level is completed
+    final prevLp = levels[levelId - 1];
+    if (prevLp != null && prevLp.completed) return true;
+
+    // Check if it's the first level of a world and that world is unlocked
+    if ((levelId - 1) % 10 == 0) {
+      final worldId = ((levelId - 1) ~/ 10) + 1;
+      if (isWorldUnlocked(worldId, requirements)) return true;
+    }
+
+    return false;
+  }
 }

@@ -19,9 +19,13 @@ class ShopScreen extends ConsumerWidget {
     return Scaffold(
       backgroundColor: AppTheme.background,
       appBar: AppBar(
-        title: Text('Shop', style: AppTheme.headline.copyWith(color: AppTheme.primary)),
+        backgroundColor: Colors.transparent,
+        title: Text(
+          'Shop',
+          style: AppTheme.headline.copyWith(color: AppTheme.primaryOrange, fontSize: 26),
+        ),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_rounded),
+          icon: const Icon(Icons.arrow_back_ios_new_rounded, color: AppTheme.textDark),
           onPressed: () {
             if (context.canPop()) {
               context.pop();
@@ -31,22 +35,32 @@ class ShopScreen extends ConsumerWidget {
           },
         ),
         actions: [
-          // Currency display
+          // Currency 3D Chip
           progressAsync.when(
             data: (p) => Container(
               margin: const EdgeInsets.only(right: 16),
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-              decoration: AppTheme.clayBox(
-                color: AppTheme.accent.withValues(alpha: 0.15),
-                radius: 16,
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(color: AppTheme.cardBorder, width: 1.5),
+                boxShadow: const [
+                  BoxShadow(color: AppTheme.cardLip, offset: Offset(0, 3), blurRadius: 0),
+                ],
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Text('💰', style: TextStyle(fontSize: 16)),
+                  const Text('🪙', style: TextStyle(fontSize: 16)),
                   const SizedBox(width: 4),
-                  Text('${p.currency}',
-                      style: AppTheme.label.copyWith(color: AppTheme.accent)),
+                  Text(
+                    '${p.currency}',
+                    style: AppTheme.label.copyWith(
+                      color: AppTheme.primaryOrange,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -59,29 +73,34 @@ class ShopScreen extends ConsumerWidget {
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (e, _) => Center(child: Text('Error: $e')),
         data: (inventory) => ListView(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.fromLTRB(20, 12, 20, 36),
           children: [
-            // Hint credits section
+            // 3D Featured Purple Starter Pack Banner
+            _StarterPackBanner().animate().fadeIn(duration: 400.ms).scale(begin: const Offset(0.9, 0.9)),
+
+            const SizedBox(height: 24),
+
+            // Hints section
             const _SectionHeader(title: 'Hints', emoji: '💡'),
             const SizedBox(height: 12),
             _HintCard(
               credits: inventory.hintCredits,
               onEarn: () => _earnHint(context, ref),
-            ).animate().fadeIn(delay: 80.ms).slideX(begin: 0.2),
+            ).animate().fadeIn(delay: 100.ms).slideX(begin: 0.1),
 
-            const SizedBox(height: 28),
+            const SizedBox(height: 24),
 
             // Boosters section
             const _SectionHeader(title: 'Boosters', emoji: '⚡'),
             const SizedBox(height: 12),
             ...BoosterType.values.asMap().entries.map((e) => Padding(
-              padding: const EdgeInsets.only(bottom: 12),
-              child: _ShopBoosterCard(
-                type: e.value,
-                count: inventory.boosterCount(e.value),
-                onEarn: () => _earnBooster(context, ref, e.value),
-              ).animate().fadeIn(delay: ((e.key + 1) * 80).ms).slideX(begin: 0.2),
-            )),
+                  padding: const EdgeInsets.only(bottom: 14),
+                  child: _ShopBoosterCard(
+                    type: e.value,
+                    count: inventory.boosterCount(e.value),
+                    onEarn: () => _earnBooster(context, ref, e.value),
+                  ).animate().fadeIn(delay: ((e.key + 1) * 80).ms).slideX(begin: 0.1),
+                )),
           ],
         ),
       ),
@@ -101,7 +120,7 @@ class ShopScreen extends ConsumerWidget {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text('💡 Hint earned!'),
-              backgroundColor: AppTheme.success,
+              backgroundColor: AppTheme.successGreen,
             ),
           );
           break;
@@ -143,7 +162,7 @@ class ShopScreen extends ConsumerWidget {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text('${type.emoji} ${type.displayName} earned!'),
-              backgroundColor: AppTheme.success,
+              backgroundColor: AppTheme.successGreen,
             ),
           );
           break;
@@ -192,6 +211,76 @@ class ShopScreen extends ConsumerWidget {
 
 // ── Widgets ──────────────────────────────────────────────────────────────────
 
+class _StarterPackBanner extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: 120,
+      padding: const EdgeInsets.all(18),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [Color(0xFF8B7CF6), Color(0xFF6D52E6)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(22),
+        border: Border.all(color: Colors.white24, width: 2),
+        boxShadow: const [
+          BoxShadow(color: Color(0xFF4C38B2), offset: Offset(0, 6), blurRadius: 0),
+        ],
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Starter Pack',
+                  style: AppTheme.title.copyWith(
+                    color: Colors.white,
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  decoration: BoxDecoration(
+                    color: AppTheme.goldYellow,
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: const [
+                      BoxShadow(color: AppTheme.goldLip, offset: Offset(0, 3), blurRadius: 0),
+                    ],
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Text('🪙', style: TextStyle(fontSize: 14)),
+                      const SizedBox(width: 4),
+                      Text(
+                        '3 / 500',
+                        style: AppTheme.label.copyWith(
+                          color: AppTheme.textDark,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const Text('🎁', style: TextStyle(fontSize: 56)),
+        ],
+      ),
+    );
+  }
+}
+
 class _SectionHeader extends StatelessWidget {
   final String title;
   final String emoji;
@@ -201,9 +290,16 @@ class _SectionHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(emoji, style: const TextStyle(fontSize: 22)),
+        Text(emoji, style: const TextStyle(fontSize: 20)),
         const SizedBox(width: 8),
-        Text(title, style: AppTheme.title.copyWith(color: AppTheme.secondary)),
+        Text(
+          title,
+          style: AppTheme.title.copyWith(
+            color: AppTheme.primaryOrange,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ],
     );
   }
@@ -218,64 +314,58 @@ class _HintCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(16),
-      decoration: AppTheme.clayBox(color: AppTheme.surface),
+      decoration: AppTheme.card3D(),
       child: Row(
         children: [
           Container(
-            width: 56,
-            height: 56,
-            decoration: AppTheme.clayBox(
-              color: AppTheme.accent.withValues(alpha: 0.15),
-              radius: 16,
+            width: 52,
+            height: 52,
+            decoration: BoxDecoration(
+              color: const Color(0xFFFFF8E1),
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: AppTheme.goldYellow, width: 1.5),
             ),
             child: const Center(
-              child: Text('💡', style: TextStyle(fontSize: 28)),
+              child: Text('💡', style: TextStyle(fontSize: 26)),
             ),
           ),
-          const SizedBox(width: 16),
+          const SizedBox(width: 14),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   children: [
-                    Text('Hints', style: AppTheme.label),
-                    const SizedBox(width: 8),
+                    Text('Hints', style: AppTheme.label.copyWith(fontSize: 16, fontWeight: FontWeight.bold)),
+                    const SizedBox(width: 6),
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                       decoration: BoxDecoration(
-                        color: credits > 0
-                            ? AppTheme.success.withValues(alpha: 0.15)
-                            : AppTheme.danger.withValues(alpha: 0.1),
+                        color: AppTheme.goldYellow.withValues(alpha: 0.2),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Text(
                         '×$credits',
                         style: AppTheme.caption.copyWith(
-                          color: credits > 0 ? AppTheme.success : AppTheme.danger,
-                          fontWeight: FontWeight.w700,
+                          color: AppTheme.goldLip,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 4),
-                Text('Shows you which rope to cut next',
-                    style: AppTheme.caption.copyWith(
-                      color: AppTheme.textDark.withValues(alpha: 0.6),
-                    )),
+                const SizedBox(height: 2),
+                Text(
+                  'Shows the best rope to cut next',
+                  style: AppTheme.caption.copyWith(
+                    color: AppTheme.textDark.withValues(alpha: 0.65),
+                    fontSize: 12,
+                  ),
+                ),
               ],
             ),
           ),
-          ElevatedButton(
-            onPressed: onEarn,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppTheme.accent,
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            ),
-            child: Text('🎬 Earn',
-                style: AppTheme.caption.copyWith(color: Colors.white, fontWeight: FontWeight.w700)),
-          ),
+          _3DEarnButton(onTap: onEarn),
         ],
       ),
     );
@@ -296,65 +386,100 @@ class _ShopBoosterCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(16),
-      decoration: AppTheme.clayBox(color: AppTheme.surface),
+      decoration: AppTheme.card3D(),
       child: Row(
         children: [
           Container(
-            width: 56,
-            height: 56,
-            decoration: AppTheme.clayBox(
-              color: AppTheme.secondary.withValues(alpha: 0.15),
-              radius: 16,
+            width: 52,
+            height: 52,
+            decoration: BoxDecoration(
+              color: const Color(0xFFEDE7F6),
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: AppTheme.secondary, width: 1.5),
             ),
             child: Center(
-              child: Text(type.emoji, style: const TextStyle(fontSize: 28)),
+              child: Text(type.emoji, style: const TextStyle(fontSize: 26)),
             ),
           ),
-          const SizedBox(width: 16),
+          const SizedBox(width: 14),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   children: [
-                    Text(type.displayName, style: AppTheme.label),
-                    const SizedBox(width: 8),
+                    Text(
+                      type.displayName,
+                      style: AppTheme.label.copyWith(fontSize: 15, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(width: 6),
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                       decoration: BoxDecoration(
-                        color: count > 0
-                            ? AppTheme.success.withValues(alpha: 0.15)
-                            : Colors.grey.withValues(alpha: 0.1),
+                        color: AppTheme.secondary.withValues(alpha: 0.15),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Text(
                         '×$count',
                         style: AppTheme.caption.copyWith(
-                          color: count > 0 ? AppTheme.success : Colors.grey,
-                          fontWeight: FontWeight.w700,
+                          color: AppTheme.secondary,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 4),
-                Text(type.description,
-                    style: AppTheme.caption.copyWith(
-                      color: AppTheme.textDark.withValues(alpha: 0.6),
-                    )),
+                const SizedBox(height: 2),
+                Text(
+                  type.description,
+                  style: AppTheme.caption.copyWith(
+                    color: AppTheme.textDark.withValues(alpha: 0.65),
+                    fontSize: 12,
+                  ),
+                ),
               ],
             ),
           ),
-          ElevatedButton(
-            onPressed: onEarn,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppTheme.accent,
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            ),
-            child: Text('🎬 Earn',
-                style: AppTheme.caption.copyWith(color: Colors.white, fontWeight: FontWeight.w700)),
-          ),
+          _3DEarnButton(onTap: onEarn),
         ],
+      ),
+    );
+  }
+}
+
+class _3DEarnButton extends StatelessWidget {
+  final VoidCallback onTap;
+  const _3DEarnButton({required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+        decoration: BoxDecoration(
+          color: AppTheme.goldYellow,
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: Colors.white, width: 1.5),
+          boxShadow: const [
+            BoxShadow(color: AppTheme.goldLip, offset: Offset(0, 4), blurRadius: 0),
+          ],
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text('🎬', style: TextStyle(fontSize: 12)),
+            const SizedBox(width: 4),
+            Text(
+              'Earn',
+              style: AppTheme.caption.copyWith(
+                color: AppTheme.textDark,
+                fontWeight: FontWeight.bold,
+                fontSize: 13,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

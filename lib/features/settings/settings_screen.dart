@@ -18,9 +18,13 @@ class SettingsScreen extends ConsumerWidget {
     return Scaffold(
       backgroundColor: AppTheme.background,
       appBar: AppBar(
-        title: Text('Settings', style: AppTheme.headline.copyWith(color: AppTheme.primary)),
+        backgroundColor: Colors.transparent,
+        title: Text(
+          'Settings',
+          style: AppTheme.headline.copyWith(color: AppTheme.primaryOrange, fontSize: 26),
+        ),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_rounded),
+          icon: const Icon(Icons.arrow_back_ios_new_rounded, color: AppTheme.textDark),
           onPressed: () {
             if (context.canPop()) {
               context.pop();
@@ -34,39 +38,55 @@ class SettingsScreen extends ConsumerWidget {
         padding: const EdgeInsets.all(20),
         children: [
           const _SectionTitle('Audio'),
-          _SettingsTile(
-            icon: Icons.music_note_rounded,
-            label: 'Music',
-            value: settings.musicEnabled,
-            onChanged: (v) {
-              notifier.toggleMusic();
-              audio.configure(music: v, sound: settings.soundEnabled);
-            },
-          ).animate().fadeIn(delay: 100.ms).slideX(begin: -0.1),
-          const SizedBox(height: 10),
-          _SettingsTile(
-            icon: Icons.volume_up_rounded,
-            label: 'Sound Effects',
-            value: settings.soundEnabled,
-            onChanged: (v) {
-              notifier.toggleSound();
-              audio.configure(music: settings.musicEnabled, sound: v);
-            },
-          ).animate().fadeIn(delay: 150.ms).slideX(begin: -0.1),
-          const SizedBox(height: 10),
-          _SettingsTile(
-            icon: Icons.vibration_rounded,
-            label: 'Vibration',
-            value: settings.vibrationEnabled,
-            onChanged: (_) => notifier.toggleVibration(),
-          ).animate().fadeIn(delay: 200.ms).slideX(begin: -0.1),
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+            decoration: AppTheme.card3D(),
+            child: Column(
+              children: [
+                _SettingsTile(
+                  icon: Icons.music_note_rounded,
+                  label: 'Music',
+                  value: settings.musicEnabled,
+                  onChanged: (v) {
+                    notifier.toggleMusic();
+                    audio.configure(music: v, sound: settings.soundEnabled);
+                  },
+                ),
+                const Divider(height: 1, color: AppTheme.cardBorder),
+                _SettingsTile(
+                  icon: Icons.volume_up_rounded,
+                  label: 'Sound Effects',
+                  value: settings.soundEnabled,
+                  onChanged: (v) {
+                    notifier.toggleSound();
+                    audio.configure(music: settings.musicEnabled, sound: v);
+                  },
+                ),
+                const Divider(height: 1, color: AppTheme.cardBorder),
+                _SettingsTile(
+                  icon: Icons.vibration_rounded,
+                  label: 'Vibration',
+                  value: settings.vibrationEnabled,
+                  onChanged: (_) => notifier.toggleVibration(),
+                ),
+              ],
+            ),
+          ).animate().fadeIn(delay: 100.ms).slideY(begin: 0.1),
+
           const SizedBox(height: 24),
+
           const _SectionTitle('About'),
-          const _InfoTile(icon: Icons.info_outline_rounded, label: 'Version', value: '1.0.0')
-              .animate().fadeIn(delay: 250.ms),
-          const SizedBox(height: 10),
-          const _InfoTile(icon: Icons.privacy_tip_rounded, label: 'Privacy Policy', value: '')
-              .animate().fadeIn(delay: 300.ms),
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+            decoration: AppTheme.card3D(),
+            child: Column(
+              children: [
+                const _InfoTile(icon: Icons.info_outline_rounded, label: 'Version', value: '1.0.2'),
+                const Divider(height: 1, color: AppTheme.cardBorder),
+                const _InfoTile(icon: Icons.security_rounded, label: 'Privacy Policy', value: ''),
+              ],
+            ),
+          ).animate().fadeIn(delay: 200.ms).slideY(begin: 0.1),
         ],
       ),
     );
@@ -80,8 +100,15 @@ class _SectionTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 12),
-      child: Text(title, style: AppTheme.label.copyWith(color: AppTheme.textDark.withValues(alpha: 0.5))),
+      padding: const EdgeInsets.only(bottom: 10, left: 4),
+      child: Text(
+        title,
+        style: AppTheme.label.copyWith(
+          color: AppTheme.textDark.withValues(alpha: 0.6),
+          fontSize: 14,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
     );
   }
 }
@@ -101,18 +128,31 @@ class _SettingsTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      decoration: AppTheme.clayBox(color: AppTheme.surface),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
       child: Row(
         children: [
-          Icon(icon, color: AppTheme.primary, size: 24),
-          const SizedBox(width: 16),
-          Expanded(child: Text(label, style: AppTheme.body)),
+          Container(
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(
+              color: AppTheme.primaryOrange.withValues(alpha: 0.12),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Icon(icon, color: AppTheme.primaryOrange, size: 22),
+          ),
+          const SizedBox(width: 14),
+          Expanded(
+            child: Text(
+              label,
+              style: AppTheme.body.copyWith(fontWeight: FontWeight.bold, fontSize: 16),
+            ),
+          ),
           Switch.adaptive(
             value: value,
             onChanged: onChanged,
-            activeTrackColor: AppTheme.primary,
+            activeTrackColor: AppTheme.primaryOrange,
+            activeColor: Colors.white,
           ),
         ],
       ),
@@ -129,16 +169,35 @@ class _InfoTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-      decoration: AppTheme.clayBox(color: AppTheme.surface),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 12),
       child: Row(
         children: [
-          Icon(icon, color: AppTheme.secondary, size: 22),
-          const SizedBox(width: 16),
-          Expanded(child: Text(label, style: AppTheme.body)),
+          Container(
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(
+              color: AppTheme.secondary.withValues(alpha: 0.12),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Icon(icon, color: AppTheme.secondary, size: 22),
+          ),
+          const SizedBox(width: 14),
+          Expanded(
+            child: Text(
+              label,
+              style: AppTheme.body.copyWith(fontWeight: FontWeight.bold, fontSize: 16),
+            ),
+          ),
           if (value.isNotEmpty)
-            Text(value, style: AppTheme.caption.copyWith(color: AppTheme.textDark.withValues(alpha: 0.5))),
+            Text(
+              value,
+              style: AppTheme.caption.copyWith(
+                color: AppTheme.textDark.withValues(alpha: 0.6),
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
           if (value.isEmpty)
             const Icon(Icons.chevron_right_rounded, color: Colors.grey),
         ],

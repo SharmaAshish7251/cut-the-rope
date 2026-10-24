@@ -2,7 +2,7 @@ name: cut_the_cable
 description: "Cut the Cable - A 100-level claymorphism physics puzzle game."
 publish_to: 'none'
 
-version: 1.0.0+1
+version: 1.0.2+2
 
 environment:
   sdk: ">=3.3.0 <4.0.0"
@@ -33,6 +33,9 @@ dependencies:
 
   # Network
   connectivity_plus: ^6.0.5
+
+  # SVG Support
+  flutter_svg: ^2.0.10
 
   # Utilities
   cupertino_icons: ^1.0.8
