@@ -34,13 +34,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
     await ref.read(gameConfigProvider.future);
     if (!mounted) return;
 
-    // Wait until progress is loaded
-    while (ref.read(progressProvider).isLoading) {
-      await Future.delayed(const Duration(milliseconds: 50));
-      if (!mounted) return;
-    }
-
-    // Configure audio
+    // Configure audio with loaded settings
     final settings = ref.read(settingsProvider);
     ref.read(audioServiceProvider).configure(
           music: settings.musicEnabled,

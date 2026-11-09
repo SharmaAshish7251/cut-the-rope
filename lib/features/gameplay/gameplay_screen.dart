@@ -787,7 +787,7 @@ class _WorldTheme {
   });
 }
 
-const _worldThemes = [
+final _worldThemes = [
   // World 1: Candy Garden
   _WorldTheme(
     colors: [Color(0xFFFFF4E8), Color(0xFFFFE8D6), Color(0xFFE8F5E9)],

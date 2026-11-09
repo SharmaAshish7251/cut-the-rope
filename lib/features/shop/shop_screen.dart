@@ -219,8 +219,8 @@ class _StarterPackBanner extends StatelessWidget {
       height: 120,
       padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [Color(0xFF8B7CF6), Color(0xFF6D52E6)],
+        gradient: LinearGradient(
+          colors: const [Color(0xFF8B7CF6), Color(0xFF6D52E6)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),

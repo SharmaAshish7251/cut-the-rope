@@ -86,17 +86,17 @@ class AppTheme {
     return BoxDecoration(
       color: primaryOrange,
       borderRadius: BorderRadius.circular(999),
-      border: Border.all(color: Colors.white.withValues(alpha: 0.6), width: 1.5),
-      boxShadow: [
+      border: Border.all(color: const Color(0x99FFFFFF), width: 1.5),
+      boxShadow: const [
         BoxShadow(
-          color: orangeLip.withValues(alpha: 0.45),
-          offset: const Offset(0, 6),
+          color: Color(0x73E65100),
+          offset: Offset(0, 6),
           blurRadius: 12,
           spreadRadius: -1,
         ),
         BoxShadow(
-          color: Colors.white.withValues(alpha: 0.35),
-          offset: const Offset(0, -2),
+          color: Color(0x59FFFFFF),
+          offset: Offset(0, -2),
           blurRadius: 4,
         ),
       ],
@@ -107,17 +107,17 @@ class AppTheme {
     return BoxDecoration(
       color: successGreen,
       borderRadius: BorderRadius.circular(999),
-      border: Border.all(color: Colors.white.withValues(alpha: 0.6), width: 1.5),
-      boxShadow: [
+      border: Border.all(color: const Color(0x99FFFFFF), width: 1.5),
+      boxShadow: const [
         BoxShadow(
-          color: greenLip.withValues(alpha: 0.45),
-          offset: const Offset(0, 6),
+          color: Color(0x7316A34A),
+          offset: Offset(0, 6),
           blurRadius: 12,
           spreadRadius: -1,
         ),
         BoxShadow(
-          color: Colors.white.withValues(alpha: 0.35),
-          offset: const Offset(0, -2),
+          color: Color(0x59FFFFFF),
+          offset: Offset(0, -2),
           blurRadius: 4,
         ),
       ],

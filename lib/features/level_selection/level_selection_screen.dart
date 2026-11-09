@@ -22,7 +22,7 @@ const _worldNames = [
 
 const _worldEmojis = ['🌸', '🔧', '☁️', '🍪', '🌿', '❄️', '🍭', '✨', '🌌', '🏰'];
 
-const _worldGradients = [
+final _worldGradients = [
   // World 1: Candy Garden
   LinearGradient(
     begin: Alignment.topCenter,

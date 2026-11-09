@@ -16,7 +16,6 @@ import '../services/reward_service.dart';
 final saveRepositoryProvider = Provider<SaveRepository>((_) => SaveRepository());
 final levelRepositoryProvider = Provider<LevelRepository>((_) => LevelRepository());
 final inventoryRepositoryProvider = Provider<InventoryRepository>((_) => InventoryRepository());
-final audioServiceProvider    = Provider<AudioService>((_) => AudioService());
 final networkServiceProvider  = Provider<NetworkService>((_) => NetworkService());
 
 // ── Config ─────────────────────────────────────────────────────────────────
@@ -179,8 +178,10 @@ class SettingsNotifier extends StateNotifier<GameSettings> {
 
   Future<void> toggleMusic() =>
       update(state.copyWith(musicEnabled: !state.musicEnabled));
+
   Future<void> toggleSound() =>
       update(state.copyWith(soundEnabled: !state.soundEnabled));
+
   Future<void> toggleVibration() =>
       update(state.copyWith(vibrationEnabled: !state.vibrationEnabled));
 }
@@ -188,4 +189,15 @@ class SettingsNotifier extends StateNotifier<GameSettings> {
 final settingsProvider =
     StateNotifierProvider<SettingsNotifier, GameSettings>((ref) {
   return SettingsNotifier(ref.watch(saveRepositoryProvider));
+});
+
+final audioServiceProvider = Provider<AudioService>((ref) {
+  final service = AudioService();
+  final settings = ref.watch(settingsProvider);
+  service.configure(
+    music: settings.musicEnabled,
+    sound: settings.soundEnabled,
+  );
+  ref.onDispose(() => service.dispose());
+  return service;
 });

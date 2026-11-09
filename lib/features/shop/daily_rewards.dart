@@ -299,10 +299,10 @@ class _Day7Banner extends StatelessWidget {
               ],
             ),
           ),
-          Positioned(
+          const Positioned(
             right: 16,
             top: 10,
-            child: const Text('🎁', style: TextStyle(fontSize: 54)),
+            child: Text('🎁', style: TextStyle(fontSize: 54)),
           ),
         ],
       ),

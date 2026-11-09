@@ -1,5 +1,5 @@
-import 'dart:math' as math;
 import 'dart:ui';
+import 'dart:math' as math;
 import 'package:flame/components.dart';
 
 enum FxParticleType { starDust, candyCrumbs, ropeSparks }

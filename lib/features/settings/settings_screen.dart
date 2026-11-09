@@ -13,7 +13,6 @@ class SettingsScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final settings = ref.watch(settingsProvider);
     final notifier = ref.read(settingsProvider.notifier);
-    final audio = ref.read(audioServiceProvider);
 
     return Scaffold(
       backgroundColor: AppTheme.background,
@@ -47,20 +46,14 @@ class SettingsScreen extends ConsumerWidget {
                   icon: Icons.music_note_rounded,
                   label: 'Music',
                   value: settings.musicEnabled,
-                  onChanged: (v) {
-                    notifier.toggleMusic();
-                    audio.configure(music: v, sound: settings.soundEnabled);
-                  },
+                  onChanged: (v) => notifier.toggleMusic(),
                 ),
                 const Divider(height: 1, color: AppTheme.cardBorder),
                 _SettingsTile(
                   icon: Icons.volume_up_rounded,
                   label: 'Sound Effects',
                   value: settings.soundEnabled,
-                  onChanged: (v) {
-                    notifier.toggleSound();
-                    audio.configure(music: settings.musicEnabled, sound: v);
-                  },
+                  onChanged: (v) => notifier.toggleSound(),
                 ),
                 const Divider(height: 1, color: AppTheme.cardBorder),
                 _SettingsTile(
@@ -79,11 +72,11 @@ class SettingsScreen extends ConsumerWidget {
           Container(
             padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
             decoration: AppTheme.card3D(),
-            child: Column(
+            child: const Column(
               children: [
-                const _InfoTile(icon: Icons.info_outline_rounded, label: 'Version', value: '1.0.2'),
-                const Divider(height: 1, color: AppTheme.cardBorder),
-                const _InfoTile(icon: Icons.security_rounded, label: 'Privacy Policy', value: ''),
+                _InfoTile(icon: Icons.info_outline_rounded, label: 'Version', value: '1.0.2'),
+                Divider(height: 1, color: AppTheme.cardBorder),
+                _InfoTile(icon: Icons.security_rounded, label: 'Privacy Policy', value: ''),
               ],
             ),
           ).animate().fadeIn(delay: 200.ms).slideY(begin: 0.1),

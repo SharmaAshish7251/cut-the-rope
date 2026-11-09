@@ -1,5 +1,5 @@
-import 'dart:math' as math;
 import 'dart:ui';
+import 'dart:math' as math;
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'candy_component.dart';
 import 'particle_effect_component.dart';

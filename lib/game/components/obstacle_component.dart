@@ -1,5 +1,5 @@
-import 'dart:math' as math;
 import 'dart:ui';
+import 'dart:math' as math;
 import 'package:flutter/services.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import '../candy_game.dart';
